@@ -1,0 +1,16 @@
+module baud_generator ( input wire clk,
+                        input wire resetn,
+                        input wire enable,
+                        input wire [15:0] divisor,
+                        output reg bclk);
+`protected
+
+    MTI!#i,Gl_{3+wO[?DjBHnwe<RzZ7($xWw2[8D#WuN/77[u7@Qopn]\soj?BAe7#{r?<Vi[>O{e0
+    |1W=1L;]liG4{,g5HJA'E'Ka^i=OZ}ijxD]]7okXr,TD[n}.ylk$]QHY[<Tv3($xXXs{OeJ<[T<V
+    w[U5>VHSEQnmIi7K$e-U[15wz_1o\<QEp@~@}N>D<}a]X2Gj]s1e&v@HY#[{JEY?xtI]#U>GgyHE
+    YkK>wWNjz$1zsj2i7T[RB<B1p$\*\vBeJTZoASrAve=@l^"!lUYB/[VHV%SJT_B$*C@6Z<QOR;*C
+    Ol>Iomp*q,+'~e>e[=G{=e4s_+V9w]/vKB<moKBUaQ2D'=}POwuoUXzes>o3VVIr\GX>UD*wUNxk
+    D[!OQAV(9z,IT!<rHlC#[Qbd3^\nHXwr
+`endprotected
+endmodule
+

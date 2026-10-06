@@ -1,0 +1,14 @@
+# OS files
+.DS_Store
+
+# Project files
+sim/work
+sim/log
+sim/*.ini
+sim/*.log
+sim/*.trace
+sim/*.wlf
+sim/transcript
+sim/*.ucdb
+sim/vsim.dbg
+sim/tmp_report

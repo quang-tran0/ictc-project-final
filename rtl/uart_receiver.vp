@@ -1,0 +1,57 @@
+module uart_receiver ( // CLK&RST
+                       input wire pclk,
+                       input wire presetn,
+                       input wire bclk,
+                       
+                       // FIFO
+                       output wire[7:0] rx_data,
+                       input wire       rx_full_status,
+                       output wire      rx_wr,
+
+                       //UART setting
+                       input wire        osm_sel,
+                       input wire        eps,
+                       input wire        pen,
+                       input wire        stb,
+                       input wire [1:0]  wls,
+                      
+                       // Parity error status
+                       output reg s_parrity_error,
+                       
+                       // UART IF
+                       input reg uart_rxd
+                     );
+`protected
+
+    MTI!#Gll-J1{@-lE\7RBaz3U@zuu+HsmYV~$e|Q3D*|,up-|%H+BBTDX3H|:Y,KaO^E2;Xv3}m{m
+    3O3zY72<G"O5i{lRaJroYsrO1*RC,~qwOjxH-1_8aYQT$>~l_;]~wsX#a$5{Y2^]X5iCzDwVUQjT
+    xR_ZlYkw3C*T>a2{w{aQ2^}$x^$=[k\oi]s@QDkCKV<#S}K]nGQEH\OGHd{\'R}[-JQV+s^@x}wY
+    '$l;+D]7{+DG*$AX,)l7K#rmQ*nzCIJR2~*~D7l#,;Z}ZvxKYuvW>C[VDR;C2n=lp<EZ$\CKlDKQ
+    ~G[>w=<C1B#5,YR\>]~}v7T,-E>5n#BUGs-$#_=\Gi?=VaC]WUKI$7_*C@h^V;7wjl1YswT]G^mW
+    B$o13@airD+2Uu{DE21$ZE+-<]=P.iQwjB'A,e<{DJGv]/C{~+7;3QQY;xOH!GFE<a*!wt[;snp,
+    ;UB3^YB2v~Qx-awo\K_[>75_?<U1]_ah0nCu!\'kEQiCA{H$JGQ{^'iXJ17sE3pG+pYXAY_^B|?w
+    A{y$-putLb7.5pier!{\[]+=9zD+3Ole]$jz7A\Y2?5@<rrp[CXOMjOA+[#,1VTQW+B2nZ1j]eWu
+    ->v1[[OV#\T,^!<oa{HEHs2wGyppj!n,I#dE#*V<eV^osp^*$i]}!sC"[R!*YCoC^$[50kTe7r3C
+    }'Zo1UYIR;DYBwwHTn]Xu9l\Vnn<^=D!viIeX\spWQKw!'^,JBV1U1jB]_C^O*r5D!XQl]YG{>~X
+    nU={o7An+k!YJAO#GsE{^o3E<]eHCi->OTSIq:'K3JuR_}>-U}usK>KT+wF.@QX^m^$$3$vGZ*kn
+    u_Y@DJ\]5p=WS:ZVU$;11~$r1[jD,o*oA>aY~,H{3,sY5@>$nJs3]v*,s+\x7xD+p~O}vkj5,kRO
+    *_E2Yv'snBBR7$a\Q7s7iknTPGIYikCa7j$YG6+H3HwV?e[EB~}VY-GA@T(*oJWv@vuSI}^:~_o[
+    ]Ls'i_z'+@v,vm^'kG''_s%F^#n#%IH=zVT}'-wE[nXK=UomO\W-Yb#H7].O]]@1${C'_KV*Ks1=
+    B32*-]!c=j~@F>=<[^F_w7AeVI{6gQ$+*$IToggR]n<E\b{o7p[ZH\Hjps[_!~=@BJB^{*\%*WVZ
+    78*mw-?sT#PpE1>~61TNl<^JWHjw6I>l~}su]CIO7Q!@z|jTYo#>U[QlDKQ+Wk$-z17?p-pw!uwv
+    D]#V=o|A{]v!DTI[{KWXj[@l^<U7~AwvIW$]GDTe;'Ik-[[**X}j[l[}?7miOGz&I~V$W]KasV2?
+    mn^[rp[<|ZaR,'s@H^v1wR?2X{xJ-|AS'nt_&Qa27,V~mwIZZ(BruJ?EW!-7e3;YeYE~$1I+oCIu
+    o5NjE7=5-saA'G$z}nI}R\~i_wBjr[~?wY!A[{]*@TaNO3pQP^z@GxZ3mNS[~Z7$?a]hn-AUJoA,
+    H}TEQ|Ae+?vOBim-=>*H\V@UAO7;Z-[JC]0IHu[=XUwz%pDiI\inYl#!=xlJ-wQ!Hmo]T}y;,=Bq
+    mEQi-7Ri,fXIQU#[_JXGsT47BT^1[p!zZXmlAH26davTDq\AezJe]pwvWQ:6>EDw]E}l*VlwT7=O
+    R?ZpXxlkA97k^kT}D#E^wKVRYmaa'!^,~k{T=3x*@3E#mCYQIvR~}BY;@Wi^@e3GB<3Uj}$e;RBQ
+    k?XGmn?Q!!~aI_T]{'1Q{JOi-x[@X{{{[Hl[ixCXp=iq-1j<WHWn-sG-pvkj'in?/'D$#'G<l3H-
+    ~Ggx+*1PIs+[sDevprOI6x_rH>VsOVam\woA<?$IHypp[Vs<W-'?I![oO~~*JvAX^,4C?e[wO5nl
+    DmRSp[}@%Y,KadiYaJBHRH;IoaQB}#zXZ^,^;~7)CW<$Hw!GTrT_*Y];Ep'7w-Vz^KQOQYDpD#D<
+    ,w{o'n{2+1?-%+oA']Wo^nD5HC!DAu5UxkY~W*K^Z@-pO!}A2-52W[_25LHjpnw<>DSl,!TG;Cnx
+    #HUA>R\IQ>>'v}p;lppZ-*@DB7k\iVA&\XjI*3*aW--^EHra]nDI,Y^Z:To@[7jD\y*ZU12DoV3<
+    ,B\D^DY&ImW#3E52BJ@$~+jZI(cCD\u#vW1RO$Z_j+Un+$]$3v_Tzj*Tzr\ZBD\+=;@CpwsIRK>w
+    ]2[}o<nursT9i{1=e21r,nZII{7R3Enxu+WsJI]wY2m*QUJeYG~5veBu[>Ew@a{-{xe^Le\-ZTCw
+    ~GOTKBE7~*dO2G=p?p}2n-Bf<}i[*]=EWO#R
+`endprotected
+endmodule

@@ -1,0 +1,1 @@
+RTL revision 2.0 following UART IP specification 2.0
