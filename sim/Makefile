@@ -5,7 +5,7 @@
 #		     make run TESTNAME=ahb_base_test 
 ## -------------------------------------------------------------
 #
-TB_NAME   ?=testbench  
+TB_NAME   ?=tb  
 TESTNAME  ?=uart_base_test
 VERBOSITY ?=UVM_HIGH
 RUNARG    ?=
