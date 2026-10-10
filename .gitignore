@@ -1,5 +1,6 @@
 # OS files
 .DS_Store
+.~lock.*#
 
 # Project files
 sim/work

@@ -75,7 +75,7 @@ flowchart TB
 - `regmodel/register/`, `regmodel/`: trường thanh ghi theo spec và adapter AHB.
 - `sequences/`: một giao dịch bus hoặc một frame UART.
 - `tb/`: DUT hookup, scoreboard, coverage và catcher chỉ dành cho self-test.
-- `testcases/`: 29 testcase thuộc 9 group; mỗi UVM class một file.
+- `testcases/`: 30 testcase thuộc 9 group; mỗi UVM class một file.
 - `sim/`: file list, Makefile, regression, giải mã VCD độc lập và sinh vplan.
 - `docs/`: vplan có thể diff, bug report, kế hoạch và bằng chứng đã lưu.
 
@@ -83,6 +83,20 @@ Scoreboard lấy dữ liệu kỳ vọng từ giao dịch bus/stimulus, không l
 DUT. Test FIFO chủ động khai báo các ghi bị loại sau khi nạp đủ FIFO, rồi kiểm
 tra số lượng/thứ tự frame thực tế. TX FIFO có 16 entry và một byte đã được
 prefetch vào thanh ghi dịch; testcase kiểm tra được cả trạng thái BGE bật/tắt.
+
+UART VIP tự phát hiện và báo lỗi parity/stop trong monitor; scoreboard thực
+hiện so sánh dữ liệu và kỳ vọng riêng của DUT. `uart_configuration` chứa các
+trường `rand` và constraint hợp lệ cho định dạng frame, oversampling và divisor;
+test duplex randomize đối tượng này trước khi lập trình thanh ghi DUT.
+
+Driver mặc định chờ `start_delay=1ns` trước start bit. Các testcase DUT đặt
+`start_delay=0` để kiểm tra được frame liên tiếp, sau khoảng idle khởi tạo của
+`configure_uart`. Monitor vẫn phát hiện mọi lỗi parity RX; riêng môi trường DUT
+đặt `report_rx_parity_errors=0` vì có stimulus cố ý sai parity và scoreboard
+đối chiếu cờ lỗi theo từng frame. Mặc định VIP độc lập bật báo lỗi này. Test
+`uart_vip_contract_test` kiểm tra VIP trên loopback tách biệt, không có scoreboard,
+và xác nhận báo lỗi, randomization, delay mặc định, cùng khoảng cách frame khi
+delay bằng 0.
 
 Test frame độc lập thực hiện reset trước mỗi cấu hình theo trình tự khởi tạo
 ở Chapter 3. Thay divisor trực tiếp khi UART đang hoạt động không thuộc cam kết

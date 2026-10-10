@@ -10,7 +10,7 @@ class uart_monitor_tail_test extends uart_base_test;
     endfunction
     task scenario();
         check_reg(0,0);
-        catcher=new;
+        catcher=new; catcher.catch_incomplete_errors=1;
         uvm_report_cb::add(env.uart.monitor,catcher);
         uart_cfg.vif.tx=0; // Isolated loopback, never drives/forces the DUT TX pin.
         cycles(5); // End before even the first data bit can be decoded.

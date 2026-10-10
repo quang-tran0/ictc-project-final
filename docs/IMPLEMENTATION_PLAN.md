@@ -79,6 +79,11 @@ regression and report 1 day. Total 5 working days with a working Questa license.
 
 ## Final execution evidence
 
-All 29 testcases executed in 33 runs: 23 PASS, 10 FAIL, 0 UNKNOWN. Three
+Initial release: 29 testcases executed in 33 runs: 23 PASS, 10 FAIL, 0 UNKNOWN. Three
 confirmed RTL bugs remain OPEN. See [VERIFICATION_REPORT.md](VERIFICATION_REPORT.md)
 for measured coverage, reproducible failures, assignment acceptance status and limits.
+
+Follow-up scope: apply UART VIP review notes without changing RTL; add a standalone
+VIP contract test, move protocol error reporting into the monitor, centralize legal
+frame randomization, preserve contiguous traffic with an explicit zero-delay option,
+then refresh the full regression evidence and VPlan before pushing the same branch.

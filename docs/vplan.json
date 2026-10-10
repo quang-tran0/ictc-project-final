@@ -13,7 +13,7 @@
     "group": "1. Register",
     "test": "uart_register_access_test",
     "description": "Walking-one/zero across 32 bits, 100 random writes/reads, implemented masks, FSR RO bits and ignored RBR writes",
-    "spec": "2.1\u20132.2",
+    "spec": "2.1–2.2",
     "checker": "Register prediction and explicit expected values; compare all read data bits",
     "bugs": ""
   },
@@ -256,8 +256,19 @@
     "group": "9. Integration and checker",
     "test": "uart_monitor_tail_test",
     "description": "Checker self-test: incomplete trailing TX and RX frame must prevent silent pass",
-    "spec": "UVM GUIDE 7\u20138, 15",
+    "spec": "UVM GUIDE 7–8, 15",
     "checker": "Isolated synthetic loopback, exactly one caught monitor error per direction; no DUT error catchers",
-    "bugs": ""
+    "bugs": "",
+    "is_checker": true
+  },
+  {
+    "id": "SYS-05",
+    "group": "9. Integration and checker",
+    "test": "uart_vip_contract_test",
+    "description": "Standalone VIP loopback: constrained frame configuration, initial idle delay, contiguous frames, parity and stop errors",
+    "spec": "UART VIP review notes; UVM GUIDE 3",
+    "checker": "No scoreboard: monitor reports both directions; exact caught-error counts; pin timing checks; 100 constrained configurations",
+    "bugs": "",
+    "is_checker": true
   }
 ]

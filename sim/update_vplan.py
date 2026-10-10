@@ -90,12 +90,13 @@ def main():
         runs = [r for r in results['runs'] if r['test']==item['test']]
         state = 'FAIL' if any(r['status']=='FAIL' for r in runs) else ('PASS' if all(r['status']=='PASS' for r in runs) else 'UNKNOWN')
         evidence = '; '.join(f"seed={r['seed']} {r['status']} sim/{r['log']}" for r in runs)
-        remark = item['bugs'] or ('Checker self-test; isolated pins, not a DUT compliance result' if item['id']=='SYS-04' else 'Executed with independent checks')
+        remark = item['bugs'] or ('Checker self-test; isolated pins, not a DUT compliance result' if item.get('is_checker') else 'Executed with independent checks')
         detail.append([item['id'],item['group'],item['description'],item['test'],'P1',item['checker'],'DV',state,'2026-10-10',remark,item['spec'],evidence])
     counts = Counter(r[7] for r in detail)
     run_counts = Counter(r['status'] for r in results['runs'])
+    checker_count = sum(bool(item.get('is_checker')) for item in plan)
     plan_rows = [['Total Items',len(detail)],['Pass Items',counts['PASS']],['Fail Items',counts['FAIL']],['NY Items',counts['UNKNOWN']],['Signoff','NOT CLOSED: three confirmed RTL defects; W1C set-to-clear coverage blocked by UART-002'],[],header] + detail
-    summary = [['Metric','Actual result'],['Date','2026-10-10'],['Branch','feat/uart-uvm-verification'],['Unique testcases',len(detail)],['DUT cases / checker self-test',f'{len(detail)-1} / 1'],['Regression runs',len(results['runs'])],['PASS / FAIL / UNKNOWN',f"{run_counts['PASS']} / {run_counts['FAIL']} / {run_counts['UNKNOWN']}"],['RTL integrity','9 files: SHA-256 identical to baseline 9ccfd39'],['RTL bug status','UART-001 OPEN; UART-002 OPEN; UART-003 OPEN'],['Merge policy','No merge; push feature branch only'],['Estimate','5 engineering days: requirements 0.5; VIP/env 1.5; tests 2; debug/report 1'],['Coverage scope','Observed exercise coverage; failing tests do not prove specification compliance']]
+    summary = [['Metric','Actual result'],['Date','2026-10-10'],['Branch','feat/uart-uvm-verification'],['Unique testcases',len(detail)],['DUT cases / checker self-tests',f'{len(detail)-checker_count} / {checker_count}'],['Regression runs',len(results['runs'])],['PASS / FAIL / UNKNOWN',f"{run_counts['PASS']} / {run_counts['FAIL']} / {run_counts['UNKNOWN']}"],['RTL integrity','9 files: SHA-256 identical to baseline 9ccfd39'],['RTL bug status','UART-001 OPEN; UART-002 OPEN; UART-003 OPEN'],['Merge policy','No merge; push feature branch only'],['Estimate','5 engineering days: requirements 0.5; VIP/env 1.5; tests 2; debug/report 1'],['Coverage scope','Observed exercise coverage; failing tests do not prove specification compliance']]
     for group in dict.fromkeys(row[1] for row in detail):
         group_counts = Counter(r[7] for r in detail if r[1]==group)
         summary.append([group,f"PASS={group_counts['PASS']} FAIL={group_counts['FAIL']} UNKNOWN={group_counts['UNKNOWN']}"])

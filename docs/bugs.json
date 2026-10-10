@@ -23,7 +23,7 @@
     "severity": "High",
     "expected": "Spec 1.5/1.6.2.2: at 13x divisor 2, valid 5N1 back-to-back frames have 260 ns bits and 1820 ns frame spacing; each 0x17 must be received intact.",
     "actual": "Eight back-to-back 0x17 frames produce seven 0x17 bytes then 0x1B. An otherwise identical stream with one extra idle bit is correct. The error persists with RX edges shifted 1 ns away from HCLK.",
-    "reproduce": "make -C sim run TESTNAME=uart_rx_13x_div2_test SEED=1 COV=ON (expected nonzero). Also observed in duplex seeds 2\u20135.",
+    "reproduce": "make -C sim run TESTNAME=uart_rx_13x_div2_test SEED=1 COV=ON (expected nonzero). Also observed in current duplex seeds 2, 3, 4, 5.",
     "localization": "Receiver frame timing path: read-only rx_wr pulses in the minimal contiguous stream are 1840 ns apart despite 1820 ns input frame spacing. Independent VCD decoder verifies the input. Protected receiver body prevents exact source-line diagnosis. RTL unchanged."
   }
 ]

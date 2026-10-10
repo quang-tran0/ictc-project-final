@@ -4,11 +4,10 @@ class uart_duplex_random_test extends uart_base_test;
     task scenario();
         int count=0;
         repeat(24) begin
-            int width, parity, stops, divisor;
-            bit osm;
-            width=$urandom_range(5,8); parity=$urandom_range(0,2);
-            stops=$urandom_range(1,2); osm=$urandom_range(0,1); divisor=$urandom_range(2,16);
-            configure_uart(width,parity,stops,osm,divisor);
+            if(!uart_cfg.randomize() with {divisor inside {[2:16]};})
+                `uvm_fatal("UART_RANDOMIZE","Cannot randomize a legal UART frame format")
+            configure_uart(uart_cfg.data_width,uart_cfg.parity,uart_cfg.num_of_stop_bits,
+                           uart_cfg.osm_sel,uart_cfg.divisor);
             fork
                 begin repeat(8) write_reg('h18,$urandom); end
                 begin repeat(8) send_rx($urandom); end

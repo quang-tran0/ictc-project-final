@@ -68,8 +68,6 @@ class uart_scoreboard extends uvm_scoreboard;
                 expected = tx_expected.pop_front();
                 compare_word("TX_DATA", {24'b0,t.data}, {24'b0,expected});
             end
-            if (t.parity_error) `uvm_error("TX_PARITY", $sformatf("data=%02h width=%0d mode=%0d", t.data,t.data_width,t.parity_mode))
-            if (t.stop_error) `uvm_error("TX_STOP", "Transmitter stop bit is not high")
         end else begin
             rx_frame_count++;
             if (rx_stimulus.size() == 0) `uvm_error("RX_UNEXPECTED", "Unrequested RX stimulus")

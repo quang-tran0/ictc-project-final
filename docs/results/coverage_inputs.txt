@@ -31,3 +31,4 @@ log/uart_duplex_random_test_4.ucdb
 log/uart_duplex_random_test_5.ucdb
 log/uart_reset_traffic_test_1.ucdb
 log/uart_monitor_tail_test_1.ucdb
+log/uart_vip_contract_test_1.ucdb

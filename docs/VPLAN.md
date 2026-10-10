@@ -1,6 +1,6 @@
 # UART verification plan results
 
-29 testcases; 33 runs: 23 PASS, 10 FAIL, 0 UNKNOWN.
+30 testcases; 34 runs: 24 PASS, 10 FAIL, 0 UNKNOWN.
 
 All planned tests were executed. RTL compliance is not closed: parity and RX frame-timing defects remain open.
 See `Vplan.xlsx` for checkers, references, seeds and bug details.
@@ -36,3 +36,4 @@ See `Vplan.xlsx` for checkers, references, seeds and bug details.
 | SYS-02 | 9. Integration and checker | `uart_duplex_random_test` | FAIL | UART-001; UART-003 |
 | SYS-03 | 9. Integration and checker | `uart_reset_traffic_test` | PASS | — |
 | SYS-04 | 9. Integration and checker | `uart_monitor_tail_test` | PASS | — |
+| SYS-05 | 9. Integration and checker | `uart_vip_contract_test` | PASS | — |

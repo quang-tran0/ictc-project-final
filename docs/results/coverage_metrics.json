@@ -61,7 +61,7 @@
   },
   {
     "item": "Coverage merge inputs",
-    "value": "33 completed runs",
+    "value": "34 completed runs",
     "note": "Exact final manifest; stale UCDB files excluded; results/coverage_inputs.txt."
   }
 ]

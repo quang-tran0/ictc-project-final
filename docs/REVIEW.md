@@ -29,3 +29,35 @@ No review finding was silently waived. No merge is performed.
 The final log-by-log audit found an additional real RX defect (UART-003),
 minimized it, checked the stimulus with an independent pin decoder, tested an
 idle-gap control, and reran the complete suite including that reproduction.
+
+## Follow-up: UART VIP release notes
+
+The user's notes from a separate UART VIP exercise were checked against this
+project before applying them:
+
+- Protocol parity/stop detection already lived in the monitor. Its UVM error
+  reporting now lives there too, so a standalone VIP does not need a scoreboard
+  to report an invalid frame. The scoreboard remains under `tb/` and compares
+  register/data results and the intended RX stimulus.
+- `start_delay` defaults to 1 ns in the reusable driver. The DUT tests explicitly
+  select zero additional idle and retain their initialization wait, preserving
+  contiguous frames and UART-003's timing reproduction.
+- Legal randomized frame fields and constraints live in `uart_configuration`.
+  The duplex test randomizes that object with its short-run divisor constraint.
+- The isolated `uart_vip_contract_test` failed before the changes on four
+  assertions (configuration, delay, parity reporting, stop reporting). It then
+  passed without a scoreboard and checks zero-delay contiguous timing as well.
+
+One scoped follow-up review found an Important issue in the new test's catcher:
+format testing also inherited incomplete-frame error demotion without checking
+those counts. A negative variant (`RUNARG=+VIP_TEST_TRAILING_FRAME`) reproduced
+false PASS. Catching unfinished-frame errors is now explicitly enabled only by
+`uart_monitor_tail_test`; the same negative variant correctly fails with both
+incomplete-frame errors. Normal contract and tail tests remain in the full
+regression. No review finding is deferred. See `results/vip_review_red_green.txt`.
+
+`report_rx_parity_errors` defaults to enabled in the VIP. DUT scenarios explicitly
+disable only that report because they inject expected malformed RX frames;
+monitor detection remains active and the scoreboard compares every parity flag
+against per-frame stimulus intent. DUT TX reports and stop-error reports remain
+active. No catchers are installed in DUT compliance tests.

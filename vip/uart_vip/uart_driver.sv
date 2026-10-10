@@ -16,6 +16,7 @@ class uart_driver extends uvm_driver #(uart_transaction);
         time bt;
         bt = cfg.bit_period();
         p = (cfg.parity == uart_configuration::UART_PARITY_ODD);
+        #(cfg.start_delay);
         vif.tx = 0; #(bt);
         for (int i=0; i<cfg.data_width; i++) begin
             vif.tx = item.data[i]; p ^= item.data[i]; #(bt);

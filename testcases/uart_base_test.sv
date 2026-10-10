@@ -9,6 +9,11 @@ class uart_base_test extends uvm_test;
         super.build_phase(phase);
         ahb_cfg = ahb_configuration::type_id::create("ahb_cfg");
         uart_cfg = uart_configuration::type_id::create("uart_cfg");
+        // DUT scenarios include contiguous frames. configure_uart supplies initial idle.
+        uart_cfg.start_delay=0;
+        // RX parity errors are intentional in negative tests. The monitor still
+        // detects them; scoreboard compares its flag against each stimulus intent.
+        uart_cfg.report_rx_parity_errors=0;
         if (!uvm_config_db#(virtual ahb_if)::get(this,"","ahb_vif",ahb_cfg.vif))
             `uvm_fatal("AHB_VIF", "Missing interface")
         if (!uvm_config_db#(virtual uart_if)::get(this,"","uart_vif",uart_cfg.vif))

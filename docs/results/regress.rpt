@@ -3,7 +3,7 @@ Configuration: regress.cfg
 Coverage: ON
 Base seed: 1
 Complete: True; unexecuted: 0
-Total: 33 PASS: 23 FAIL: 10 UNKNOWN: 0
+Total: 34 PASS: 24 FAIL: 10 UNKNOWN: 0
 PASS    uart_register_reset_test seed=1 exit=0 timeout=False log=log/uart_register_reset_test_1.log
 PASS    uart_register_access_test seed=1 exit=0 timeout=False log=log/uart_register_access_test_1.log
 PASS    uart_regmodel_test seed=1 exit=0 timeout=False log=log/uart_regmodel_test_1.log
@@ -37,3 +37,4 @@ FAIL    uart_duplex_random_test seed=4 exit=2 timeout=False log=log/uart_duplex_
 FAIL    uart_duplex_random_test seed=5 exit=2 timeout=False log=log/uart_duplex_random_test_5.log
 PASS    uart_reset_traffic_test seed=1 exit=0 timeout=False log=log/uart_reset_traffic_test_1.log
 PASS    uart_monitor_tail_test seed=1 exit=0 timeout=False log=log/uart_monitor_tail_test_1.log
+PASS    uart_vip_contract_test seed=1 exit=0 timeout=False log=log/uart_vip_contract_test_1.log

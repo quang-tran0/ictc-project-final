@@ -1,6 +1,6 @@
 # vsim -c tb -sv_seed 1 -coverage -L /home/quang-tran/Source/QuestaSim/questasim/uvm-1.2 -dpicpppath /usr/bin/gcc -voptargs="+acc" -assertdebug -wlf log/uart_tx_parity_bug_test_1.wlf -l log/uart_tx_parity_bug_test_1.log -do "onerror {quit -code 2}; coverage save -codeAll -cvg -onexit log/uart_tx_parity_bug_test_1.ucdb; log -r /tb/*; run -all; quit -f;" "+UVM_TESTNAME=uart_tx_parity_bug_test" "+UVM_VERBOSITY=UVM_LOW"
-# Start time: 15:53:16 on Oct 10,2026
-# Loading /tmp/quang-tran@gnauq-desktop_dpi_95789/linux_x86_64_gcc-16/export_tramp.so
+# Start time: 16:08:22 on Oct 10,2026
+# Loading /tmp/quang-tran@gnauq-desktop_dpi_116374/linux_x86_64_gcc-16/export_tramp.so
 # ** Note: (vsim-8009) Loading existing optimized design _opt
 # //  Questa Sim-64
 # //  Version 2021.2_1 linux_x86_64 May 15 2021
@@ -40,8 +40,8 @@
 # Loading work.uart_receiver(fast)
 # Loading work.uart_interrupt(fast)
 # Loading work.baud_generator(fast)
-# Compiling /tmp/quang-tran@gnauq-desktop_dpi_95789/linux_x86_64_gcc-16/exportwrapper.c
-# Loading /tmp/quang-tran@gnauq-desktop_dpi_95789/linux_x86_64_gcc-16/vsim_auto_compile.so
+# Compiling /tmp/quang-tran@gnauq-desktop_dpi_116374/linux_x86_64_gcc-16/exportwrapper.c
+# Loading /tmp/quang-tran@gnauq-desktop_dpi_116374/linux_x86_64_gcc-16/vsim_auto_compile.so
 # Loading /home/quang-tran/Source/QuestaSim/questasim/uvm-1.2/linux_x86_64/uvm_dpi.so
 # onerror {quit -code 2}
 #  Warning: onerror command for use within macro
@@ -71,14 +71,14 @@
 #       (Specify +UVM_NO_RELNOTES to turn off this notice)
 #
 # UVM_INFO @ 0: reporter [RNTST] Running test uart_tx_parity_bug_test...
-# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(65) @ 300000: uvm_test_top [FRAME_CONFIG] width=8 parity=1 stops=1 osm=0 divisor=4
-# UVM_ERROR /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(71) @ 8635000: uvm_test_top.env.scoreboard [TX_PARITY] data=00 width=8 mode=1
-# UVM_ERROR /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(71) @ 16715000: uvm_test_top.env.scoreboard [TX_PARITY] data=01 width=8 mode=1
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(70) @ 300000: uvm_test_top [FRAME_CONFIG] width=8 parity=1 stops=1 osm=0 divisor=4
+# UVM_ERROR /home/quang-tran/Projects/project_final/vip/uart_vip/uart_monitor.sv(49) @ 8635000: uvm_test_top.env.uart.monitor [TX_PARITY] data=00 width=8 mode=1
+# UVM_ERROR /home/quang-tran/Projects/project_final/vip/uart_vip/uart_monitor.sv(49) @ 16715000: uvm_test_top.env.uart.monitor [TX_PARITY] data=01 width=8 mode=1
 # UVM_INFO verilog_src/uvm-1.2/src/base/uvm_objection.svh(1270) @ 18090000: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
 # UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_coverage.sv(52) @ 18090000: uvm_test_top.env.coverage [COVERAGE] bus=57.78 frame=28.91 status=0.00 irq=0.00
-# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(93) @ 18090000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=8 compared=3 TX=2 RX_frames=0 RX_reads=0 TX_ignored_full=0
-# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(122) @ 18090000: uvm_test_top [CHECKS] Directed checks=4
-# UVM_ERROR /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(126) @ 18090000: uvm_test_top [TEST_STATUS] TEST FAILED
+# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(91) @ 18090000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=8 compared=3 TX=2 RX_frames=0 RX_reads=0 TX_ignored_full=0
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(127) @ 18090000: uvm_test_top [CHECKS] Directed checks=4
+# UVM_ERROR /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(131) @ 18090000: uvm_test_top [TEST_STATUS] TEST FAILED
 # UVM_INFO verilog_src/uvm-1.2/src/base/uvm_report_server.svh(847) @ 18090000: reporter [UVM/REPORT/SERVER]
 # --- UVM Report Summary ---
 #
@@ -101,5 +101,5 @@
 # ** Note: $finish    : /home/quang-tran/Source/QuestaSim/questasim/linux_x86_64/../verilog_src/uvm-1.2/src/base/uvm_root.svh(517)
 #    Time: 18090 ns  Iteration: 69  Instance: /tb
 # Saving coverage database on exit...
-# End time: 15:53:20 on Oct 10,2026, Elapsed time: 0:00:04
+# End time: 16:08:27 on Oct 10,2026, Elapsed time: 0:00:05
 # Errors: 0, Warnings: 0

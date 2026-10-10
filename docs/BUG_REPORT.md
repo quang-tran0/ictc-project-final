@@ -111,7 +111,7 @@ python3 analyze_uart_vcd.py /tmp/uart-rx-fast.vcd \
 
 Evidence: `results/uart_rx_13x_div2_test_1.log`,
 `results/rx_fast_decode.json` and `results/rx_fast_signal_trace.txt`.
-Duplex seeds 2–5 also report RX data mismatches at 13x/divisor 2. These are
+The current duplex seeds 2, 3, 4, 5 also report RX data mismatches. These are
 recorded as UART-003 separately from their TX parity failures.
 
 ## Investigation limits

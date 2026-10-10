@@ -2,7 +2,7 @@
   "config": "regress.cfg",
   "coverage": "ON",
   "base_seed": 1,
-  "planned_count": 33,
+  "planned_count": 34,
   "complete": true,
   "planned_runs": [
     {
@@ -169,6 +169,11 @@
       "test": "uart_monitor_tail_test",
       "seed": 1,
       "options": ""
+    },
+    {
+      "test": "uart_vip_contract_test",
+      "seed": 1,
+      "options": ""
     }
   ],
   "runs": [
@@ -178,7 +183,7 @@
       "status": "PASS",
       "exit_code": 0,
       "timeout": false,
-      "elapsed_seconds": 6.884,
+      "elapsed_seconds": 6.934,
       "log": "log/uart_register_reset_test_1.log",
       "options": ""
     },
@@ -188,7 +193,7 @@
       "status": "PASS",
       "exit_code": 0,
       "timeout": false,
-      "elapsed_seconds": 6.832,
+      "elapsed_seconds": 7.134,
       "log": "log/uart_register_access_test_1.log",
       "options": ""
     },
@@ -198,7 +203,7 @@
       "status": "PASS",
       "exit_code": 0,
       "timeout": false,
-      "elapsed_seconds": 6.933,
+      "elapsed_seconds": 6.782,
       "log": "log/uart_regmodel_test_1.log",
       "options": ""
     },
@@ -208,7 +213,7 @@
       "status": "PASS",
       "exit_code": 0,
       "timeout": false,
-      "elapsed_seconds": 6.832,
+      "elapsed_seconds": 6.982,
       "log": "log/uart_ahb_transfer_test_1.log",
       "options": ""
     },
@@ -218,7 +223,7 @@
       "status": "PASS",
       "exit_code": 0,
       "timeout": false,
-      "elapsed_seconds": 6.883,
+      "elapsed_seconds": 7.234,
       "log": "log/uart_ahb_idle_test_1.log",
       "options": ""
     },
@@ -228,7 +233,7 @@
       "status": "PASS",
       "exit_code": 0,
       "timeout": false,
-      "elapsed_seconds": 6.933,
+      "elapsed_seconds": 7.034,
       "log": "log/uart_reserved_access_test_1.log",
       "options": ""
     },
@@ -238,7 +243,7 @@
       "status": "PASS",
       "exit_code": 0,
       "timeout": false,
-      "elapsed_seconds": 67.285,
+      "elapsed_seconds": 74.197,
       "log": "log/uart_baud_test_1.log",
       "options": ""
     },
@@ -248,7 +253,7 @@
       "status": "PASS",
       "exit_code": 0,
       "timeout": false,
-      "elapsed_seconds": 6.883,
+      "elapsed_seconds": 6.882,
       "log": "log/uart_baud_disable_test_1.log",
       "options": ""
     },
@@ -258,7 +263,7 @@
       "status": "FAIL",
       "exit_code": 2,
       "timeout": false,
-      "elapsed_seconds": 7.235,
+      "elapsed_seconds": 7.183,
       "log": "log/uart_tx_format_test_1.log",
       "options": ""
     },
@@ -268,7 +273,7 @@
       "status": "PASS",
       "exit_code": 0,
       "timeout": false,
-      "elapsed_seconds": 7.134,
+      "elapsed_seconds": 7.082,
       "log": "log/uart_tx_data_test_1.log",
       "options": ""
     },
@@ -278,7 +283,7 @@
       "status": "PASS",
       "exit_code": 0,
       "timeout": false,
-      "elapsed_seconds": 7.335,
+      "elapsed_seconds": 7.185,
       "log": "log/uart_rx_format_test_1.log",
       "options": ""
     },
@@ -288,7 +293,7 @@
       "status": "PASS",
       "exit_code": 0,
       "timeout": false,
-      "elapsed_seconds": 7.286,
+      "elapsed_seconds": 7.183,
       "log": "log/uart_rx_data_test_1.log",
       "options": ""
     },
@@ -298,7 +303,7 @@
       "status": "FAIL",
       "exit_code": 2,
       "timeout": false,
-      "elapsed_seconds": 7.031,
+      "elapsed_seconds": 6.933,
       "log": "log/uart_rx_13x_div2_test_1.log",
       "options": ""
     },
@@ -308,7 +313,7 @@
       "status": "PASS",
       "exit_code": 0,
       "timeout": false,
-      "elapsed_seconds": 6.882,
+      "elapsed_seconds": 6.933,
       "log": "log/uart_tx_fifo_test_1.log",
       "options": ""
     },
@@ -318,7 +323,7 @@
       "status": "PASS",
       "exit_code": 0,
       "timeout": false,
-      "elapsed_seconds": 7.735,
+      "elapsed_seconds": 7.584,
       "log": "log/uart_tx_active_full_test_1.log",
       "options": ""
     },
@@ -328,7 +333,7 @@
       "status": "PASS",
       "exit_code": 0,
       "timeout": false,
-      "elapsed_seconds": 6.733,
+      "elapsed_seconds": 7.134,
       "log": "log/uart_rx_fifo_test_1.log",
       "options": ""
     },
@@ -338,7 +343,7 @@
       "status": "PASS",
       "exit_code": 0,
       "timeout": false,
-      "elapsed_seconds": 6.933,
+      "elapsed_seconds": 6.733,
       "log": "log/uart_irq_mask_test_1.log",
       "options": ""
     },
@@ -348,7 +353,7 @@
       "status": "PASS",
       "exit_code": 0,
       "timeout": false,
-      "elapsed_seconds": 6.884,
+      "elapsed_seconds": 6.83,
       "log": "log/uart_irq_tx_empty_test_1.log",
       "options": ""
     },
@@ -358,7 +363,7 @@
       "status": "PASS",
       "exit_code": 0,
       "timeout": false,
-      "elapsed_seconds": 7.134,
+      "elapsed_seconds": 7.082,
       "log": "log/uart_irq_tx_full_test_1.log",
       "options": ""
     },
@@ -368,7 +373,7 @@
       "status": "PASS",
       "exit_code": 0,
       "timeout": false,
-      "elapsed_seconds": 6.985,
+      "elapsed_seconds": 6.782,
       "log": "log/uart_irq_rx_empty_test_1.log",
       "options": ""
     },
@@ -378,7 +383,7 @@
       "status": "PASS",
       "exit_code": 0,
       "timeout": false,
-      "elapsed_seconds": 7.184,
+      "elapsed_seconds": 6.733,
       "log": "log/uart_irq_rx_full_test_1.log",
       "options": ""
     },
@@ -388,7 +393,7 @@
       "status": "FAIL",
       "exit_code": 2,
       "timeout": false,
-      "elapsed_seconds": 7.082,
+      "elapsed_seconds": 7.032,
       "log": "log/uart_parity_error_test_1.log",
       "options": ""
     },
@@ -398,7 +403,7 @@
       "status": "PASS",
       "exit_code": 0,
       "timeout": false,
-      "elapsed_seconds": 6.983,
+      "elapsed_seconds": 6.881,
       "log": "log/uart_parity_disabled_test_1.log",
       "options": ""
     },
@@ -408,7 +413,7 @@
       "status": "FAIL",
       "exit_code": 2,
       "timeout": false,
-      "elapsed_seconds": 6.833,
+      "elapsed_seconds": 6.883,
       "log": "log/uart_tx_parity_bug_test_1.log",
       "options": ""
     },
@@ -418,7 +423,7 @@
       "status": "FAIL",
       "exit_code": 2,
       "timeout": false,
-      "elapsed_seconds": 7.133,
+      "elapsed_seconds": 6.782,
       "log": "log/uart_rx_parity_bug_test_1.log",
       "options": ""
     },
@@ -428,7 +433,7 @@
       "status": "PASS",
       "exit_code": 0,
       "timeout": false,
-      "elapsed_seconds": 7.135,
+      "elapsed_seconds": 6.682,
       "log": "log/uart_smoke_test_1.log",
       "options": ""
     },
@@ -438,7 +443,7 @@
       "status": "FAIL",
       "exit_code": 2,
       "timeout": false,
-      "elapsed_seconds": 7.335,
+      "elapsed_seconds": 7.434,
       "log": "log/uart_duplex_random_test_1.log",
       "options": ""
     },
@@ -448,7 +453,7 @@
       "status": "FAIL",
       "exit_code": 2,
       "timeout": false,
-      "elapsed_seconds": 7.182,
+      "elapsed_seconds": 7.535,
       "log": "log/uart_duplex_random_test_2.log",
       "options": ""
     },
@@ -458,7 +463,7 @@
       "status": "FAIL",
       "exit_code": 2,
       "timeout": false,
-      "elapsed_seconds": 7.634,
+      "elapsed_seconds": 7.583,
       "log": "log/uart_duplex_random_test_3.log",
       "options": ""
     },
@@ -468,7 +473,7 @@
       "status": "FAIL",
       "exit_code": 2,
       "timeout": false,
-      "elapsed_seconds": 7.231,
+      "elapsed_seconds": 7.485,
       "log": "log/uart_duplex_random_test_4.log",
       "options": ""
     },
@@ -478,7 +483,7 @@
       "status": "FAIL",
       "exit_code": 2,
       "timeout": false,
-      "elapsed_seconds": 7.083,
+      "elapsed_seconds": 7.133,
       "log": "log/uart_duplex_random_test_5.log",
       "options": ""
     },
@@ -488,7 +493,7 @@
       "status": "PASS",
       "exit_code": 0,
       "timeout": false,
-      "elapsed_seconds": 7.084,
+      "elapsed_seconds": 6.633,
       "log": "log/uart_reset_traffic_test_1.log",
       "options": ""
     },
@@ -498,8 +503,18 @@
       "status": "PASS",
       "exit_code": 0,
       "timeout": false,
-      "elapsed_seconds": 7.133,
+      "elapsed_seconds": 6.781,
       "log": "log/uart_monitor_tail_test_1.log",
+      "options": ""
+    },
+    {
+      "test": "uart_vip_contract_test",
+      "seed": 1,
+      "status": "PASS",
+      "exit_code": 0,
+      "timeout": false,
+      "elapsed_seconds": 6.681,
+      "log": "log/uart_vip_contract_test_1.log",
       "options": ""
     }
   ]

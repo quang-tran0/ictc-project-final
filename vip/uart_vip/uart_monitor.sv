@@ -45,6 +45,11 @@ class uart_monitor extends uvm_monitor;
                         repeat (item.stop_bits) begin
                             #(bt); if (pin(dut_tx) !== 1) item.stop_error = 1;
                         end
+                        if (item.parity_error && (dut_tx || cfg.report_rx_parity_errors))
+                            `uvm_error(dut_tx ? "TX_PARITY" : "RX_PARITY",
+                                $sformatf("data=%02h width=%0d mode=%0d",item.data,item.data_width,item.parity_mode))
+                        if (item.stop_error)
+                            `uvm_error(dut_tx ? "TX_STOP" : "RX_STOP","UART stop bit is not high")
                         analysis_port.write(item);
                     end
                 end

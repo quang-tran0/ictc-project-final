@@ -1,0 +1,23 @@
+UART VIP follow-up: red/green evidence
+
+Before production changes: isolated VIP self-test had four assertion failures.
+# UVM_ERROR /home/quang-tran/Projects/project_final/testcases/uart_vip_contract_test.sv(21) @ 100000: uvm_test_top [VIP_CONTRACT] Configuration must randomize to a requested legal frame format
+# UVM_ERROR /home/quang-tran/Projects/project_final/testcases/uart_vip_contract_test.sv(21) @ 110000: uvm_test_top [VIP_CONTRACT] Default start delay must leave idle time before start bit
+# UVM_ERROR /home/quang-tran/Projects/project_final/testcases/uart_vip_contract_test.sv(21) @ 13550000: uvm_test_top [VIP_CONTRACT] Monitor alone must report bad parity in both directions
+# UVM_ERROR /home/quang-tran/Projects/project_final/testcases/uart_vip_contract_test.sv(21) @ 20590000: uvm_test_top [VIP_CONTRACT] Monitor alone must report low stop bits in both directions
+
+After production changes: see final uart_vip_contract_test_1.log (normal mode PASS).
+
+Review finding before fix: unexpected unfinished frames were incorrectly demoted to INFO and test passed.
+# UVM_INFO /home/quang-tran/Projects/project_final/vip/uart_vip/uart_monitor.sv(64) @ 33397000: uvm_test_top.agent.monitor [UART_TX_INCOMPLETE] Test ended with an unfinished TX frame
+# UVM_INFO /home/quang-tran/Projects/project_final/vip/uart_vip/uart_monitor.sv(65) @ 33397000: uvm_test_top.agent.monitor [UART_RX_INCOMPLETE] Test ended with an unfinished RX frame
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_vip_contract_test.sv(86) @ 33397000: uvm_test_top [TEST_STATUS] TEST PASSED
+
+After opt-in incomplete-error catcher: same negative variant correctly fails.
+# UVM_ERROR /home/quang-tran/Projects/project_final/vip/uart_vip/uart_monitor.sv(64) @ 33397000: uvm_test_top.agent.monitor [UART_TX_INCOMPLETE] Test ended with an unfinished TX frame
+# UVM_ERROR /home/quang-tran/Projects/project_final/vip/uart_vip/uart_monitor.sv(65) @ 33397000: uvm_test_top.agent.monitor [UART_RX_INCOMPLETE] Test ended with an unfinished RX frame
+# UVM_ERROR /home/quang-tran/Projects/project_final/testcases/uart_vip_contract_test.sv(87) @ 33397000: uvm_test_top [TEST_STATUS] TEST FAILED
+
+Negative variant command (expected nonzero):
+make -C sim run TESTNAME=uart_vip_contract_test SEED=1 COV=ON RUNARG=+VIP_TEST_TRAILING_FRAME
+This deliberate failure variant is separate from the normal full regression.

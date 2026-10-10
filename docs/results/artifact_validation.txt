@@ -1,9 +1,11 @@
 XLSX ZIP integrity and all XML parts: PASS
 Sheets: Summary, Vplan, Bugs, Coverage
-Vplan: 29 rows; 23 unique PASS, 6 unique FAIL; 9 groups
+Vplan: 30 rows; 24 unique PASS, 6 unique FAIL; 9 groups
+DUT cases / isolated checker tests: 28 / 2
 Bugs: UART-001 / UART-002 / UART-003 OPEN
-CSV: header + 29 testcase rows
+CSV: header + 30 testcase rows
 Archived manifest identical to final executed manifest: PASS
-Coverage inputs: exactly 33 completed runs
+Coverage inputs: exactly 34 completed runs
+Three minimal bugs independently decoded from final pin waveforms: PASS
 Repository Markdown links: PASS
-Tested source/configuration hashes: 78 files
+Tested source/configuration hashes: 79 files

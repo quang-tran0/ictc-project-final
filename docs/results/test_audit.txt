@@ -1,91 +1,127 @@
-Final regression audit: 29 unique tests, 33 runs, 23 PASS, 10 FAIL, 0 UNKNOWN.
+Final regression audit: 30 unique tests, 34 runs, 24 PASS, 10 FAIL, 0 UNKNOWN.
 
 uart_register_reset_test seed=1 PASS exit=0 errors={}
-# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(93) @ 1430000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=22 compared=12 TX=0 RX_frames=0 RX_reads=0 TX_ignored_full=0
-# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(125) @ 1430000: uvm_test_top [TEST_STATUS] TEST PASSED
+# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(91) @ 1430000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=22 compared=12 TX=0 RX_frames=0 RX_reads=0 TX_ignored_full=0
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(127) @ 1430000: uvm_test_top [CHECKS] Directed checks=18
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(130) @ 1430000: uvm_test_top [TEST_STATUS] TEST PASSED
 uart_register_access_test seed=1 PASS exit=0 errors={}
-# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(93) @ 36610000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=909 compared=421 TX=0 RX_frames=0 RX_reads=0 TX_ignored_full=0
-# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(125) @ 36610000: uvm_test_top [TEST_STATUS] TEST PASSED
+# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(91) @ 36610000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=909 compared=421 TX=0 RX_frames=0 RX_reads=0 TX_ignored_full=0
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(127) @ 36610000: uvm_test_top [CHECKS] Directed checks=423
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(130) @ 36610000: uvm_test_top [TEST_STATUS] TEST PASSED
 uart_regmodel_test seed=1 PASS exit=0 errors={}
-# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(93) @ 1280000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=22 compared=15 TX=0 RX_frames=0 RX_reads=0 TX_ignored_full=0
-# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(125) @ 1280000: uvm_test_top [TEST_STATUS] TEST PASSED
+# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(91) @ 1280000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=22 compared=15 TX=0 RX_frames=0 RX_reads=0 TX_ignored_full=0
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(127) @ 1280000: uvm_test_top [CHECKS] Directed checks=16
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(130) @ 1280000: uvm_test_top [TEST_STATUS] TEST PASSED
 uart_ahb_transfer_test seed=1 PASS exit=0 errors={}
-# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(93) @ 16250000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=400 compared=200 TX=0 RX_frames=0 RX_reads=0 TX_ignored_full=0
-# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(125) @ 16250000: uvm_test_top [TEST_STATUS] TEST PASSED
+# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(91) @ 16250000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=400 compared=200 TX=0 RX_frames=0 RX_reads=0 TX_ignored_full=0
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(127) @ 16250000: uvm_test_top [CHECKS] Directed checks=201
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(130) @ 16250000: uvm_test_top [TEST_STATUS] TEST PASSED
 uart_ahb_idle_test seed=1 PASS exit=0 errors={}
-# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(93) @ 490000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=2 compared=1 TX=0 RX_frames=0 RX_reads=0 TX_ignored_full=0
-# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(125) @ 490000: uvm_test_top [TEST_STATUS] TEST PASSED
+# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(91) @ 490000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=2 compared=1 TX=0 RX_frames=0 RX_reads=0 TX_ignored_full=0
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(127) @ 490000: uvm_test_top [CHECKS] Directed checks=2
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(130) @ 490000: uvm_test_top [TEST_STATUS] TEST PASSED
 uart_reserved_access_test seed=1 PASS exit=0 errors={}
-# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(93) @ 44890000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=992 compared=496 TX=0 RX_frames=0 RX_reads=0 TX_ignored_full=0
-# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(125) @ 44890000: uvm_test_top [TEST_STATUS] TEST PASSED
+# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(91) @ 44890000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=992 compared=496 TX=0 RX_frames=0 RX_reads=0 TX_ignored_full=0
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(127) @ 44890000: uvm_test_top [CHECKS] Directed checks=497
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(130) @ 44890000: uvm_test_top [TEST_STATUS] TEST PASSED
 uart_baud_test seed=1 PASS exit=0 errors={}
-# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(93) @ 492285500000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=208 compared=78 TX=26 RX_frames=26 RX_reads=26 TX_ignored_full=0
-# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(125) @ 492285500000: uvm_test_top [TEST_STATUS] TEST PASSED
+# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(91) @ 492285500000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=208 compared=78 TX=26 RX_frames=26 RX_reads=26 TX_ignored_full=0
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(127) @ 492285500000: uvm_test_top [CHECKS] Directed checks=54
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(130) @ 492285500000: uvm_test_top [TEST_STATUS] TEST PASSED
 uart_baud_disable_test seed=1 PASS exit=0 errors={}
-# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(93) @ 35090000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=10 compared=2 TX=2 RX_frames=0 RX_reads=0 TX_ignored_full=0
-# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(125) @ 35090000: uvm_test_top [TEST_STATUS] TEST PASSED
+# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(91) @ 35090000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=10 compared=2 TX=2 RX_frames=0 RX_reads=0 TX_ignored_full=0
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(127) @ 35090000: uvm_test_top [CHECKS] Directed checks=5
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(130) @ 35090000: uvm_test_top [TEST_STATUS] TEST PASSED
 uart_tx_format_test seed=1 FAIL exit=2 errors={'TX_PARITY': 80, 'TEST_STATUS': 1}
-# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(93) @ 1195290000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=432 compared=192 TX=192 RX_frames=0 RX_reads=0 TX_ignored_full=0
+# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(91) @ 1195290000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=432 compared=192 TX=192 RX_frames=0 RX_reads=0 TX_ignored_full=0
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(127) @ 1195290000: uvm_test_top [CHECKS] Directed checks=50
 uart_tx_data_test seed=1 PASS exit=0 errors={}
-# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(93) @ 1906530000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=261 compared=256 TX=256 RX_frames=0 RX_reads=0 TX_ignored_full=0
-# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(125) @ 1906530000: uvm_test_top [TEST_STATUS] TEST PASSED
+# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(91) @ 1906530000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=261 compared=256 TX=256 RX_frames=0 RX_reads=0 TX_ignored_full=0
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(127) @ 1906530000: uvm_test_top [CHECKS] Directed checks=3
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(130) @ 1906530000: uvm_test_top [TEST_STATUS] TEST PASSED
 uart_rx_format_test seed=1 PASS exit=0 errors={}
-# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(93) @ 1168410000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=672 compared=384 TX=0 RX_frames=192 RX_reads=192 TX_ignored_full=0
-# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(125) @ 1168410000: uvm_test_top [TEST_STATUS] TEST PASSED
+# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(91) @ 1168410000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=672 compared=384 TX=0 RX_frames=192 RX_reads=192 TX_ignored_full=0
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(127) @ 1168410000: uvm_test_top [CHECKS] Directed checks=98
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(130) @ 1168410000: uvm_test_top [TEST_STATUS] TEST PASSED
 uart_rx_data_test seed=1 PASS exit=0 errors={}
-# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(93) @ 1671000000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=517 compared=512 TX=0 RX_frames=256 RX_reads=256 TX_ignored_full=0
-# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(125) @ 1671000000: uvm_test_top [TEST_STATUS] TEST PASSED
+# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(91) @ 1671000000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=517 compared=512 TX=0 RX_frames=256 RX_reads=256 TX_ignored_full=0
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(127) @ 1671000000: uvm_test_top [CHECKS] Directed checks=3
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(130) @ 1671000000: uvm_test_top [TEST_STATUS] TEST PASSED
 uart_rx_13x_div2_test seed=1 FAIL exit=2 errors={'RX_DATA': 1, 'TEST_STATUS': 1}
-# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(93) @ 34550000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=42 compared=32 TX=0 RX_frames=16 RX_reads=16 TX_ignored_full=0
+# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(91) @ 34550000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=42 compared=32 TX=0 RX_frames=16 RX_reads=16 TX_ignored_full=0
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(127) @ 34550000: uvm_test_top [CHECKS] Directed checks=6
 uart_tx_fifo_test seed=1 PASS exit=0 errors={}
-# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(93) @ 336210000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=128 compared=54 TX=51 RX_frames=0 RX_reads=0 TX_ignored_full=9
-# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(125) @ 336210000: uvm_test_top [TEST_STATUS] TEST PASSED
+# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(91) @ 336210000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=128 compared=54 TX=51 RX_frames=0 RX_reads=0 TX_ignored_full=9
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(127) @ 336210000: uvm_test_top [CHECKS] Directed checks=61
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(130) @ 336210000: uvm_test_top [TEST_STATUS] TEST PASSED
 uart_tx_active_full_test seed=1 PASS exit=0 errors={}
-# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(93) @ 7109770000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=27 compared=17 TX=17 RX_frames=0 RX_reads=0 TX_ignored_full=3
-# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(125) @ 7109770000: uvm_test_top [TEST_STATUS] TEST PASSED
+# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(91) @ 7109770000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=27 compared=17 TX=17 RX_frames=0 RX_reads=0 TX_ignored_full=3
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(127) @ 7109770000: uvm_test_top [CHECKS] Directed checks=6
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(130) @ 7109770000: uvm_test_top [TEST_STATUS] TEST PASSED
 uart_rx_fifo_test seed=1 PASS exit=0 errors={}
-# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(93) @ 315080000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=152 compared=96 TX=0 RX_frames=48 RX_reads=48 TX_ignored_full=0
-# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(125) @ 315080000: uvm_test_top [TEST_STATUS] TEST PASSED
+# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(91) @ 315080000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=152 compared=96 TX=0 RX_frames=48 RX_reads=48 TX_ignored_full=0
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(127) @ 315080000: uvm_test_top [CHECKS] Directed checks=54
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(130) @ 315080000: uvm_test_top [TEST_STATUS] TEST PASSED
 uart_irq_mask_test seed=1 PASS exit=0 errors={}
-# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(93) @ 2930000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=35 compared=1 TX=0 RX_frames=0 RX_reads=0 TX_ignored_full=0
-# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(125) @ 2930000: uvm_test_top [TEST_STATUS] TEST PASSED
+# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(91) @ 2930000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=35 compared=1 TX=0 RX_frames=0 RX_reads=0 TX_ignored_full=0
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(127) @ 2930000: uvm_test_top [CHECKS] Directed checks=34
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(130) @ 2930000: uvm_test_top [TEST_STATUS] TEST PASSED
 uart_irq_tx_empty_test seed=1 PASS exit=0 errors={}
-# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(93) @ 16170000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=11 compared=2 TX=2 RX_frames=0 RX_reads=0 TX_ignored_full=0
-# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(125) @ 16170000: uvm_test_top [TEST_STATUS] TEST PASSED
+# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(91) @ 16170000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=11 compared=2 TX=2 RX_frames=0 RX_reads=0 TX_ignored_full=0
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(127) @ 16170000: uvm_test_top [CHECKS] Directed checks=7
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(130) @ 16170000: uvm_test_top [TEST_STATUS] TEST PASSED
 uart_irq_tx_full_test seed=1 PASS exit=0 errors={}
-# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(93) @ 112610000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=25 compared=17 TX=17 RX_frames=0 RX_reads=0 TX_ignored_full=0
-# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(125) @ 112610000: uvm_test_top [TEST_STATUS] TEST PASSED
+# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(91) @ 112610000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=25 compared=17 TX=17 RX_frames=0 RX_reads=0 TX_ignored_full=0
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(127) @ 112610000: uvm_test_top [CHECKS] Directed checks=6
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(130) @ 112610000: uvm_test_top [TEST_STATUS] TEST PASSED
 uart_irq_rx_empty_test seed=1 PASS exit=0 errors={}
-# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(93) @ 8680000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=9 compared=2 TX=0 RX_frames=1 RX_reads=1 TX_ignored_full=0
-# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(125) @ 8680000: uvm_test_top [TEST_STATUS] TEST PASSED
+# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(91) @ 8680000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=9 compared=2 TX=0 RX_frames=1 RX_reads=1 TX_ignored_full=0
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(127) @ 8680000: uvm_test_top [CHECKS] Directed checks=7
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(130) @ 8680000: uvm_test_top [TEST_STATUS] TEST PASSED
 uart_irq_rx_full_test seed=1 PASS exit=0 errors={}
-# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(93) @ 105800000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=38 compared=32 TX=0 RX_frames=16 RX_reads=16 TX_ignored_full=0
-# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(125) @ 105800000: uvm_test_top [TEST_STATUS] TEST PASSED
+# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(91) @ 105800000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=38 compared=32 TX=0 RX_frames=16 RX_reads=16 TX_ignored_full=0
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(127) @ 105800000: uvm_test_top [CHECKS] Directed checks=6
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(130) @ 105800000: uvm_test_top [TEST_STATUS] TEST PASSED
 uart_parity_error_test seed=1 FAIL exit=2 errors={'PARITY_SET': 16, 'IRQ_LEVEL': 32, 'PARITY_STICKY': 16, 'PARITY_WRITE_ZERO': 16, 'TEST_STATUS': 1}
-# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(93) @ 214170000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=288 compared=64 TX=0 RX_frames=32 RX_reads=32 TX_ignored_full=0
+# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(91) @ 214170000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=288 compared=64 TX=0 RX_frames=32 RX_reads=32 TX_ignored_full=0
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(127) @ 214170000: uvm_test_top [CHECKS] Directed checks=162
 uart_parity_disabled_test seed=1 PASS exit=0 errors={}
-# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(93) @ 15040000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=11 compared=4 TX=0 RX_frames=2 RX_reads=2 TX_ignored_full=0
-# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(125) @ 15040000: uvm_test_top [TEST_STATUS] TEST PASSED
+# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(91) @ 15040000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=11 compared=4 TX=0 RX_frames=2 RX_reads=2 TX_ignored_full=0
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(127) @ 15040000: uvm_test_top [CHECKS] Directed checks=5
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(130) @ 15040000: uvm_test_top [TEST_STATUS] TEST PASSED
 uart_tx_parity_bug_test seed=1 FAIL exit=2 errors={'TX_PARITY': 2, 'TEST_STATUS': 1}
-# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(93) @ 18090000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=8 compared=3 TX=2 RX_frames=0 RX_reads=0 TX_ignored_full=0
+# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(91) @ 18090000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=8 compared=3 TX=2 RX_frames=0 RX_reads=0 TX_ignored_full=0
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(127) @ 18090000: uvm_test_top [CHECKS] Directed checks=4
 uart_rx_parity_bug_test seed=1 FAIL exit=2 errors={'PARITY_SET': 1, 'IRQ_LEVEL': 1, 'PARITY_WRITE_ZERO': 1, 'TEST_STATUS': 1}
-# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(93) @ 9400000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=14 compared=3 TX=0 RX_frames=1 RX_reads=1 TX_ignored_full=0
+# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(91) @ 9400000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=14 compared=3 TX=0 RX_frames=1 RX_reads=1 TX_ignored_full=0
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(127) @ 9400000: uvm_test_top [CHECKS] Directed checks=9
 uart_smoke_test seed=1 PASS exit=0 errors={}
-# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(93) @ 22370000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=12 compared=6 TX=2 RX_frames=1 RX_reads=1 TX_ignored_full=0
-# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(125) @ 22370000: uvm_test_top [TEST_STATUS] TEST PASSED
-uart_duplex_random_test seed=1 FAIL exit=2 errors={'TX_PARITY': 87, 'TEST_STATUS': 1}
-# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(93) @ 2375330000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=720 compared=576 TX=192 RX_frames=192 RX_reads=192 TX_ignored_full=0
-uart_duplex_random_test seed=2 FAIL exit=2 errors={'TX_PARITY': 72, 'RX_DATA': 3, 'TEST_STATUS': 1}
-# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(93) @ 2479370000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=720 compared=576 TX=192 RX_frames=192 RX_reads=192 TX_ignored_full=0
-uart_duplex_random_test seed=3 FAIL exit=2 errors={'TX_PARITY': 78, 'RX_DATA': 1, 'TEST_STATUS': 1}
-# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(93) @ 2583090000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=720 compared=576 TX=192 RX_frames=192 RX_reads=192 TX_ignored_full=0
-uart_duplex_random_test seed=4 FAIL exit=2 errors={'TX_PARITY': 97, 'RX_DATA': 1, 'TEST_STATUS': 1}
-# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(93) @ 2279010000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=720 compared=576 TX=192 RX_frames=192 RX_reads=192 TX_ignored_full=0
-uart_duplex_random_test seed=5 FAIL exit=2 errors={'TX_PARITY': 54, 'RX_DATA': 2, 'TEST_STATUS': 1}
-# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(93) @ 2062130000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=720 compared=576 TX=192 RX_frames=192 RX_reads=192 TX_ignored_full=0
+# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(91) @ 22370000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=12 compared=6 TX=2 RX_frames=1 RX_reads=1 TX_ignored_full=0
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(127) @ 22370000: uvm_test_top [CHECKS] Directed checks=6
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(130) @ 22370000: uvm_test_top [TEST_STATUS] TEST PASSED
+uart_duplex_random_test seed=1 FAIL exit=2 errors={'TX_PARITY': 68, 'TEST_STATUS': 1}
+# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(91) @ 2644530000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=720 compared=576 TX=192 RX_frames=192 RX_reads=192 TX_ignored_full=0
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(127) @ 2644530000: uvm_test_top [CHECKS] Directed checks=50
+uart_duplex_random_test seed=2 FAIL exit=2 errors={'TX_PARITY': 83, 'RX_DATA': 1, 'TEST_STATUS': 1}
+# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(91) @ 2508130000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=720 compared=576 TX=192 RX_frames=192 RX_reads=192 TX_ignored_full=0
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(127) @ 2508130000: uvm_test_top [CHECKS] Directed checks=50
+uart_duplex_random_test seed=3 FAIL exit=2 errors={'TX_PARITY': 80, 'RX_DATA': 1, 'TEST_STATUS': 1}
+# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(91) @ 2458930000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=720 compared=576 TX=192 RX_frames=192 RX_reads=192 TX_ignored_full=0
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(127) @ 2458930000: uvm_test_top [CHECKS] Directed checks=50
+uart_duplex_random_test seed=4 FAIL exit=2 errors={'TX_PARITY': 91, 'RX_DATA': 1, 'TEST_STATUS': 1}
+# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(91) @ 2575450000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=720 compared=576 TX=192 RX_frames=192 RX_reads=192 TX_ignored_full=0
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(127) @ 2575450000: uvm_test_top [CHECKS] Directed checks=50
+uart_duplex_random_test seed=5 FAIL exit=2 errors={'TX_PARITY': 77, 'RX_DATA': 1, 'TEST_STATUS': 1}
+# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(91) @ 2144290000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=720 compared=576 TX=192 RX_frames=192 RX_reads=192 TX_ignored_full=0
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(127) @ 2144290000: uvm_test_top [CHECKS] Directed checks=50
 uart_reset_traffic_test seed=1 PASS exit=0 errors={}
-# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(93) @ 23490000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=23 compared=4 TX=1 RX_frames=1 RX_reads=1 TX_ignored_full=0
-# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(125) @ 23490000: uvm_test_top [TEST_STATUS] TEST PASSED
+# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(91) @ 23490000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=23 compared=4 TX=1 RX_frames=1 RX_reads=1 TX_ignored_full=0
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(127) @ 23490000: uvm_test_top [CHECKS] Directed checks=9
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(130) @ 23490000: uvm_test_top [TEST_STATUS] TEST PASSED
 uart_monitor_tail_test seed=1 PASS exit=0 errors={}
-# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(93) @ 340000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=1 compared=1 TX=0 RX_frames=0 RX_reads=0 TX_ignored_full=0
-# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(125) @ 340000: uvm_test_top [TEST_STATUS] TEST PASSED
+# UVM_INFO /home/quang-tran/Projects/project_final/tb/uart_scoreboard.sv(91) @ 340000: uvm_test_top.env.scoreboard [SCOREBOARD] AHB=1 compared=1 TX=0 RX_frames=0 RX_reads=0 TX_ignored_full=0
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(127) @ 340000: uvm_test_top [CHECKS] Directed checks=2
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_base_test.sv(130) @ 340000: uvm_test_top [TEST_STATUS] TEST PASSED
+uart_vip_contract_test seed=1 PASS exit=0 errors={}
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_vip_contract_test.sv(84) @ 33392000: uvm_test_top [CHECKS] Standalone VIP checks=208
+# UVM_INFO /home/quang-tran/Projects/project_final/testcases/uart_vip_contract_test.sv(86) @ 33392000: uvm_test_top [TEST_STATUS] TEST PASSED
