@@ -9,7 +9,7 @@ class uart_tx_fifo_test extends uart_base_test;
                 write_reg('h18,i+round_no*32);
                 if(i>0) check_reg('h14,i==16 ? 1 : 0,3,"TX_FIFO_FLAGS");
             end
-            repeat(3) write_reg('h18,'hee);
+            repeat(3) reject_full_tx('hee);
             check_reg('h18,0); check_reg('h14,1,3);
             write_reg('hc,'h23); wait_tx((round_no+1)*17);
             check_reg('h14,2,3);

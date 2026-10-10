@@ -31,31 +31,32 @@ Sources: the two root PDF files and UVM_QUESTASIM_PROJECT_GUIDE.md, read on
 ## Tasks
 
 ### Task 1: Vertical smoke and reusable infrastructure
-- [ ] Establish failing baseline and write reset/register/TX/RX smoke scenarios.
-- [ ] Implement legal AHB handshake driver/monitor and UART serializer/decoder.
-- [ ] Add scoreboard, environment, base test, compile ordering and portable Questa
+- [x] Establish failing baseline and write reset/register/TX/RX smoke scenarios.
+- [x] Implement legal AHB handshake driver/monitor and UART serializer/decoder.
+- [x] Add scoreboard, environment, base test, compile ordering and portable Questa
   discovery. Minimal sequences expose one AHB transfer or one UART frame.
-- [ ] Run `make -C sim all TESTNAME=uart_smoke_test SEED=1` and debug testbench
+- [x] Run `make -C sim all TESTNAME=uart_smoke_test SEED=1` and debug testbench
   defects from evidence. Require real bus and serial comparisons before PASS.
 
 ### Task 2: Spec scenarios and coverage
-- [ ] Add register model and frontdoor test; reset values: 0,0,0,3,0,0xA,0;
+- [x] Add register model and frontdoor test; reset values: 0,0,0,3,0,0xA,0;
   masks: 1,0xFF,0xFF,0x3F,0x1F. RBR is undefined when empty.
-- [ ] Add grouped directed tests and randomized duplex tests, including full FIFO
+- [x] Add grouped directed tests and randomized duplex tests, including full FIFO
   write rejection, wraparound, all interrupt sources, parity sticky/W1C behavior,
   idle/BUSY/unselected bus cycles and reserved-address error response/recovery.
-- [ ] Include min/max/low-high divisor boundaries and every frame configuration.
-- [ ] Add functional covergroups and strict regression exit status/timeouts.
-- [ ] Run every testcase individually, then seeded regression with coverage ON.
+- [x] Include min/max/low-high divisor boundaries and every frame configuration.
+- [x] Add functional covergroups and strict regression exit status/timeouts.
+- [x] Run every testcase individually, then seeded regression with coverage ON.
 
 ### Task 3: Debug evidence and deliverables
-- [ ] Minimize each reproducible discrepancy; compare required/observed behavior,
+- [x] Minimize each reproducible discrepancy; compare required/observed behavior,
   log test/seed/time/data and affected specification section in bug report/VPlan.
-- [ ] Merge UCDB and report actual coverage plus exclusions/gaps (encrypted RTL
+- [x] Merge UCDB and report actual coverage plus exclusions/gaps (encrypted RTL
   may prevent internal code coverage; do not infer it from external coverage).
-- [ ] Complete Vplan.xlsx with groups, tests, checkers, actual outcomes and bug IDs;
+- [x] Complete Vplan.xlsx with groups, tests, checkers, actual outcomes and bug IDs;
   include implementation estimate, testbench diagram and reproduction commands.
-- [ ] Review branch, verify hashes and rerun relevant checks, commit and push branch.
+- [x] Review branch, verify hashes and rerun relevant checks.
+- Publication: commit the completed evidence and push only the feature branch; no merge.
 
 ## Review focus
 
@@ -75,3 +76,9 @@ duplicate UVM factory macros, and no connected scoreboard.
 Planning estimate (engineering effort, not measured elapsed time): requirements
 and VPlan 0.5 day; VIP/env/smoke 1.5 days; directed tests/coverage 2 days; debug,
 regression and report 1 day. Total 5 working days with a working Questa license.
+
+## Final execution evidence
+
+All 29 testcases executed in 33 runs: 23 PASS, 10 FAIL, 0 UNKNOWN. Three
+confirmed RTL bugs remain OPEN. See [VERIFICATION_REPORT.md](VERIFICATION_REPORT.md)
+for measured coverage, reproducible failures, assignment acceptance status and limits.

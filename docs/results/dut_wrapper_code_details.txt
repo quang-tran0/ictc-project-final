@@ -1,0 +1,84 @@
+Coverage Report by instance with details
+
+=================================================================================
+=== Instance: /tb/dut
+=== Design Unit: work.uart_top
+=================================================================================
+Expression Coverage:
+    Enabled Coverage              Bins   Covered    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Expressions                      5         4         1    80.00%
+
+================================Expression Details================================
+
+Expression Coverage for instance /tb/dut --
+
+  File /home/quang-tran/Projects/project_final/sim/../rtl/uart_top.v
+----------------Focused Expression View-----------------
+Line       185 Item    1  ((((tx_fifo_full | tx_fifo_empty) | rx_fifo_full) | rx_fifo_empty) | parrity_error)
+Expression totals: 4 of 5 input terms covered = 80.00%
+
+     Input Term   Covered  Reason for no coverage   Hint
+    -----------  --------  -----------------------  --------------
+   tx_fifo_full         Y
+  tx_fifo_empty         Y
+   rx_fifo_full         Y
+  rx_fifo_empty         Y
+  parrity_error         N  '_1' not hit             Hit '_1'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)
+ ---------  ---------  --------------------  -------------------------
+  Row   1:         33  tx_fifo_full_0        (~parrity_error && ~rx_fifo_empty && ~rx_fifo_full && ~tx_fifo_empty)
+  Row   2:          1  tx_fifo_full_1        (~parrity_error && ~rx_fifo_empty && ~rx_fifo_full && ~tx_fifo_empty)
+  Row   3:         33  tx_fifo_empty_0       (~parrity_error && ~rx_fifo_empty && ~rx_fifo_full && ~tx_fifo_full)
+  Row   4:          3  tx_fifo_empty_1       (~parrity_error && ~rx_fifo_empty && ~rx_fifo_full && ~tx_fifo_full)
+  Row   5:         33  rx_fifo_full_0        (~parrity_error && ~rx_fifo_empty && ~(tx_fifo_full | tx_fifo_empty))
+  Row   6:          1  rx_fifo_full_1        (~parrity_error && ~rx_fifo_empty && ~(tx_fifo_full | tx_fifo_empty))
+  Row   7:         33  rx_fifo_empty_0       (~parrity_error && ~((tx_fifo_full | tx_fifo_empty) | rx_fifo_full))
+  Row   8:          3  rx_fifo_empty_1       (~parrity_error && ~((tx_fifo_full | tx_fifo_empty) | rx_fifo_full))
+  Row   9:         33  parrity_error_0       ~(((tx_fifo_full | tx_fifo_empty) | rx_fifo_full) | rx_fifo_empty)
+ Row   10:    ***0***  parrity_error_1       ~(((tx_fifo_full | tx_fifo_empty) | rx_fifo_full) | rx_fifo_empty)
+
+
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                       1         1         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for instance /tb/dut --
+
+    Line         Item                      Count     Source
+    ----         ----                      -----     ------
+  File /home/quang-tran/Projects/project_final/sim/../rtl/uart_top.v
+    185             1                        123
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                        500       466        34    93.20%
+
+================================Toggle Details================================
+
+Toggle Coverage for instance /tb/dut --
+
+                                              Node      1H->0L      0L->1H  "Coverage"
+                                              ---------------------------------------
+                                        HADDR[0-1]           0           0        0.00
+                                       HBURST[1-2]           0           0        0.00
+                                        HPROT[0-3]           0           0        0.00
+                                        HSIZE[0-2]           0           0        0.00
+                                        paddr[0-1]           0           0        0.00
+                                     parrity_error           0           0        0.00
+                              parrity_error_status           0           0        0.00
+                                            pready           0           0        0.00
+                                   s_parrity_error           0           0        0.00
+
+Total Node Count     =        250
+Toggled Node Count   =        233
+Untoggled Node Count =         17
+
+Toggle Coverage      =      93.20% (466 of 500 bins)
+
+
+Total Coverage By Instance (filtered view): 91.06%

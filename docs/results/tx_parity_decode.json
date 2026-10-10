@@ -1,0 +1,18 @@
+[
+  {
+    "start_ns": 1915.0,
+    "data": "0x00",
+    "expected_parity": 0,
+    "actual_parity": "1",
+    "parity_ok": false,
+    "stop_ok": true
+  },
+  {
+    "start_ns": 9995.0,
+    "data": "0x01",
+    "expected_parity": 1,
+    "actual_parity": "0",
+    "parity_ok": false,
+    "stop_ok": true
+  }
+]

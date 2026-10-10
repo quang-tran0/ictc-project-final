@@ -1,0 +1,13 @@
+Result gate: 8 checks passed
+Configuration, exit status, timeout and independent decoder checks passed
+VCD single-bit vector encoding check passed
+UART strict regression
+Configuration: suite.cfg
+Coverage: ON
+Base seed: 1
+Complete: False; unexecuted: 1
+Total: 2 PASS: 1 FAIL: 0 UNKNOWN: 1
+PASS    one seed=1 exit=0 timeout=False log=one.log
+Interrupted regression and stale coverage checks passed
+Failed build invalidates previous manifest
+No-parity back-to-back decoder check passed

@@ -1,0 +1,42 @@
+mkdir -p log
+/home/quang-tran/Source/QuestaSim/questasim/linux_x86_64/vmap work work
+QuestaSim-64 vmap 2021.2_1 Lib Mapping Utility 2021.05 May 15 2021
+vmap work work
+Modifying modelsim.ini
+/home/quang-tran/Source/QuestaSim/questasim/linux_x86_64/vlog -coveropt 3 +cover=bcestf -timescale 1ns/1ps -mfcu -suppress 2181 \
+  +acc=rb -L /home/quang-tran/Source/QuestaSim/questasim/uvm-1.2 +incdir+/home/quang-tran/Source/QuestaSim/questasim/verilog_src/uvm-1.2/src \
+  +define+UVM_OBJECT_MUST_HAVE_CONSTRUCTOR -f compile.f
+QuestaSim-64 vlog 2021.2_1 Compiler 2021.05 May 15 2021
+Start time: 15:49:31 on Oct 10,2026
+vlog -coveropt 3 "+cover=bcestf" -timescale 1ns/1ps -mfcu -suppress 2181 "+acc=rb" -L /home/quang-tran/Source/QuestaSim/questasim/uvm-1.2 "+incdir+/home/quang-tran/Source/QuestaSim/questasim/verilog_src/uvm-1.2/src" "+define+UVM_OBJECT_MUST_HAVE_CONSTRUCTOR" -f compile.f
+-- Compiling module cmsdk_ahb_to_apb
+-- Compiling module apb_decoder
+-- Compiling module baud_generator
+-- Compiling module uart_fifo
+-- Compiling module uart_interrupt
+-- Compiling module uart_receiver
+-- Compiling module uart_transmitter
+-- Compiling module uart_top
+-- Compiling interface uart_if
+-- Compiling package uart_pkg
+-- Importing package /home/quang-tran/Source/QuestaSim/questasim/uvm-1.2.uvm_pkg (uvm-1.2 Built-in)
+-- Compiling interface ahb_if
+-- Compiling package ahb_pkg
+-- Compiling package uart_register_pkg
+-- Compiling package uart_regmodel_pkg
+-- Importing package ahb_pkg
+-- Importing package uart_register_pkg
+-- Compiling package env_pkg
+-- Importing package uart_pkg
+-- Compiling package seq_pkg
+-- Compiling package test_pkg
+-- Importing package seq_pkg
+-- Importing package env_pkg
+-- Importing package uart_regmodel_pkg
+-- Compiling module tb
+-- Importing package test_pkg
+
+Top level modules:
+	tb
+End time: 15:49:31 on Oct 10,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0

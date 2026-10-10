@@ -1,6 +1,7 @@
 class uart_monitor extends uvm_monitor;
     `uvm_component_utils(uart_monitor)
     uart_configuration cfg;
+    bit decoding[2];
     virtual uart_if vif;
     uvm_analysis_port #(uart_transaction) analysis_port;
     function new(string name, uvm_component parent);
@@ -21,6 +22,7 @@ class uart_monitor extends uvm_monitor;
         forever begin
             if (dut_tx) @(negedge vif.rx); else @(negedge vif.tx);
             if (vif.reset_n !== 1) continue;
+            decoding[dut_tx]=1;
             item = uart_transaction::type_id::create("frame");
             item.direction = dut_tx ? uart_transaction::UART_TX : uart_transaction::UART_RX;
             item.start_time = $time;
@@ -49,8 +51,14 @@ class uart_monitor extends uvm_monitor;
                 begin @(negedge vif.reset_n); end
             join_any
             disable fork; // Only this decoder invocation; TX and RX run concurrently.
+            decoding[dut_tx]=0;
         end
     endtask
+    function void check_phase(uvm_phase phase);
+        super.check_phase(phase);
+        if(decoding[1]) `uvm_error("UART_TX_INCOMPLETE","Test ended with an unfinished TX frame")
+        if(decoding[0]) `uvm_error("UART_RX_INCOMPLETE","Test ended with an unfinished RX frame")
+    endfunction
     task run_phase(uvm_phase phase);
         fork decode(1); decode(0); join
     endtask

@@ -47,7 +47,7 @@ run:
 wave:
 	$(QUESTA_BIN)/vsim -i -view log/$(TESTNAME)_$(SEED).wlf &
 cov_merge:
-	$(QUESTA_BIN)/vcover merge UART_MERGE.ucdb log/uart_*.ucdb
+	python3 merge_coverage.py $(QUESTA_BIN)/vcover
 cov_report:
 	$(QUESTA_BIN)/vcover report -details -cvg -output coverage.txt UART_MERGE.ucdb
 clean:

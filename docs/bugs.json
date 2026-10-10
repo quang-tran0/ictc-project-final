@@ -1,0 +1,29 @@
+[
+  {
+    "id": "UART-001",
+    "state": "OPEN",
+    "severity": "High",
+    "expected": "Spec 1.6.2.1 / 2.2.4: in 8E1, parity(0x00)=0 and parity(0x01)=1; total ones including parity is even.",
+    "actual": "Pin decoder observes parity(0x00)=1 and parity(0x01)=0. Stop bits and payload are correct. TX format matrix and randomized duplex also fail parity checks.",
+    "reproduce": "make -C sim build COV=ON; make -C sim run TESTNAME=uart_tx_parity_bug_test SEED=1 COV=ON (expected nonzero)",
+    "localization": "Transmitter parity generation path. LCR=0x3B is read back correctly. Independent VCD decoder confirms wrong parity on uart_txd. uart_transmiter.vp is encrypted; exact internal expression cannot be identified. RTL unchanged."
+  },
+  {
+    "id": "UART-002",
+    "state": "OPEN",
+    "severity": "High",
+    "expected": "Spec 2.2.4/2.2.5/2.2.6: wrong RX parity with PEN=1 must set FSR[4], assert interrupt when IER[4]=1, remain sticky until W1C.",
+    "actual": "Valid 8E1 data 0x00 with injected parity=1 is received as 0x00, but FSR=0x0A (bit4=0) and interrupt=0. Full error matrix reproduces missing status for both sampling modes, all widths and even/odd parity. Set-to-clear W1C behavior remains blocked, not proven passing.",
+    "reproduce": "make -C sim build COV=ON; make -C sim run TESTNAME=uart_rx_parity_bug_test SEED=1 COV=ON (expected nonzero)",
+    "localization": "Receiver parity-error reporting path: readable top-level s_parrity_error never asserts in the minimal waveform. PEN/EPS/LCR and error stimulus are verified. uart_receiver.vp and apb_decoder.vp bodies are encrypted; do not claim an exact internal source line. RTL unchanged."
+  },
+  {
+    "id": "UART-003",
+    "state": "OPEN",
+    "severity": "High",
+    "expected": "Spec 1.5/1.6.2.2: at 13x divisor 2, valid 5N1 back-to-back frames have 260 ns bits and 1820 ns frame spacing; each 0x17 must be received intact.",
+    "actual": "Eight back-to-back 0x17 frames produce seven 0x17 bytes then 0x1B. An otherwise identical stream with one extra idle bit is correct. The error persists with RX edges shifted 1 ns away from HCLK.",
+    "reproduce": "make -C sim run TESTNAME=uart_rx_13x_div2_test SEED=1 COV=ON (expected nonzero). Also observed in duplex seeds 2\u20135.",
+    "localization": "Receiver frame timing path: read-only rx_wr pulses in the minimal contiguous stream are 1840 ns apart despite 1820 ns input frame spacing. Independent VCD decoder verifies the input. Protected receiver body prevents exact source-line diagnosis. RTL unchanged."
+  }
+]

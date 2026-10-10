@@ -16,3 +16,4 @@ sim/regress.rpt
 sim/regress.json
 sim/coverage.txt
 __pycache__/
+sim/coverage_inputs.txt

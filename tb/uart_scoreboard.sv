@@ -8,7 +8,7 @@ class uart_scoreboard extends uvm_scoreboard;
     int unsigned ahb_count, compared_count, tx_count, rx_count, rx_frame_count;
     int unsigned tx_dropped, reset_count;
     bit require_empty = 1;
-    bit tx_full_sample;
+    int unsigned expected_tx_rejections;
     function new(string name, uvm_component parent);
         super.new(name, parent);
         ahb_imp = new("ahb_imp", this); uart_imp = new("uart_imp", this);
@@ -17,7 +17,7 @@ class uart_scoreboard extends uvm_scoreboard;
     function void reset_model();
         regs = '{0, 0, 0, 3, 0};
         tx_expected.delete(); rx_expected.delete(); rx_stimulus.delete(); rx_errors.delete();
-        tx_full_sample=0;
+        expected_tx_rejections=0;
         reset_count++;
     endfunction
     function bit [31:0] mask(int index);
@@ -45,12 +45,11 @@ class uart_scoreboard extends uvm_scoreboard;
         if (t.kind == ahb_transaction::WRITE) begin
             if (index < 5) regs[index] = t.data & mask(index);
             if (t.addr == 'h18) begin
-                if (!regs[3][5] && tx_full_sample) tx_dropped++;
+                if (expected_tx_rejections != 0) begin tx_dropped++; expected_tx_rejections--; end
                 else tx_expected.push_back(t.data[7:0] & ((1 << (5 + regs[3][1:0])) - 1));
             end
         end else begin
             if (index < 5) compare_word("REGISTER_DATA", t.rdata, regs[index]);
-            if (t.addr == 'h14) tx_full_sample=t.rdata[0];
             if (t.addr == 'h18) compare_word("TBR_READ_ZERO", t.rdata, 0);
             if (t.addr == 'h1c && rx_expected.size() != 0) begin
                 expected = rx_expected.pop_front();
@@ -86,6 +85,7 @@ class uart_scoreboard extends uvm_scoreboard;
     function void check_phase(uvm_phase phase);
         super.check_phase(phase);
         if (ahb_count == 0 || compared_count == 0) `uvm_error("NO_CHECKS", "Zero checked traffic")
+        if(expected_tx_rejections) `uvm_error("UNUSED_REJECTIONS","Expected rejected writes were not issued")
         if (require_empty && (tx_expected.size() || rx_expected.size() || rx_stimulus.size()))
             `uvm_error("PENDING_DATA", $sformatf("TX=%0d RX=%0d stimulus=%0d", tx_expected.size(), rx_expected.size(), rx_stimulus.size()))
     endfunction

@@ -1,0 +1,506 @@
+{
+  "config": "regress.cfg",
+  "coverage": "ON",
+  "base_seed": 1,
+  "planned_count": 33,
+  "complete": true,
+  "planned_runs": [
+    {
+      "test": "uart_register_reset_test",
+      "seed": 1,
+      "options": ""
+    },
+    {
+      "test": "uart_register_access_test",
+      "seed": 1,
+      "options": ""
+    },
+    {
+      "test": "uart_regmodel_test",
+      "seed": 1,
+      "options": ""
+    },
+    {
+      "test": "uart_ahb_transfer_test",
+      "seed": 1,
+      "options": ""
+    },
+    {
+      "test": "uart_ahb_idle_test",
+      "seed": 1,
+      "options": ""
+    },
+    {
+      "test": "uart_reserved_access_test",
+      "seed": 1,
+      "options": ""
+    },
+    {
+      "test": "uart_baud_test",
+      "seed": 1,
+      "options": ""
+    },
+    {
+      "test": "uart_baud_disable_test",
+      "seed": 1,
+      "options": ""
+    },
+    {
+      "test": "uart_tx_format_test",
+      "seed": 1,
+      "options": ""
+    },
+    {
+      "test": "uart_tx_data_test",
+      "seed": 1,
+      "options": ""
+    },
+    {
+      "test": "uart_rx_format_test",
+      "seed": 1,
+      "options": ""
+    },
+    {
+      "test": "uart_rx_data_test",
+      "seed": 1,
+      "options": ""
+    },
+    {
+      "test": "uart_rx_13x_div2_test",
+      "seed": 1,
+      "options": ""
+    },
+    {
+      "test": "uart_tx_fifo_test",
+      "seed": 1,
+      "options": ""
+    },
+    {
+      "test": "uart_tx_active_full_test",
+      "seed": 1,
+      "options": ""
+    },
+    {
+      "test": "uart_rx_fifo_test",
+      "seed": 1,
+      "options": ""
+    },
+    {
+      "test": "uart_irq_mask_test",
+      "seed": 1,
+      "options": ""
+    },
+    {
+      "test": "uart_irq_tx_empty_test",
+      "seed": 1,
+      "options": ""
+    },
+    {
+      "test": "uart_irq_tx_full_test",
+      "seed": 1,
+      "options": ""
+    },
+    {
+      "test": "uart_irq_rx_empty_test",
+      "seed": 1,
+      "options": ""
+    },
+    {
+      "test": "uart_irq_rx_full_test",
+      "seed": 1,
+      "options": ""
+    },
+    {
+      "test": "uart_parity_error_test",
+      "seed": 1,
+      "options": ""
+    },
+    {
+      "test": "uart_parity_disabled_test",
+      "seed": 1,
+      "options": ""
+    },
+    {
+      "test": "uart_tx_parity_bug_test",
+      "seed": 1,
+      "options": ""
+    },
+    {
+      "test": "uart_rx_parity_bug_test",
+      "seed": 1,
+      "options": ""
+    },
+    {
+      "test": "uart_smoke_test",
+      "seed": 1,
+      "options": ""
+    },
+    {
+      "test": "uart_duplex_random_test",
+      "seed": 1,
+      "options": ""
+    },
+    {
+      "test": "uart_duplex_random_test",
+      "seed": 2,
+      "options": ""
+    },
+    {
+      "test": "uart_duplex_random_test",
+      "seed": 3,
+      "options": ""
+    },
+    {
+      "test": "uart_duplex_random_test",
+      "seed": 4,
+      "options": ""
+    },
+    {
+      "test": "uart_duplex_random_test",
+      "seed": 5,
+      "options": ""
+    },
+    {
+      "test": "uart_reset_traffic_test",
+      "seed": 1,
+      "options": ""
+    },
+    {
+      "test": "uart_monitor_tail_test",
+      "seed": 1,
+      "options": ""
+    }
+  ],
+  "runs": [
+    {
+      "test": "uart_register_reset_test",
+      "seed": 1,
+      "status": "PASS",
+      "exit_code": 0,
+      "timeout": false,
+      "elapsed_seconds": 6.884,
+      "log": "log/uart_register_reset_test_1.log",
+      "options": ""
+    },
+    {
+      "test": "uart_register_access_test",
+      "seed": 1,
+      "status": "PASS",
+      "exit_code": 0,
+      "timeout": false,
+      "elapsed_seconds": 6.832,
+      "log": "log/uart_register_access_test_1.log",
+      "options": ""
+    },
+    {
+      "test": "uart_regmodel_test",
+      "seed": 1,
+      "status": "PASS",
+      "exit_code": 0,
+      "timeout": false,
+      "elapsed_seconds": 6.933,
+      "log": "log/uart_regmodel_test_1.log",
+      "options": ""
+    },
+    {
+      "test": "uart_ahb_transfer_test",
+      "seed": 1,
+      "status": "PASS",
+      "exit_code": 0,
+      "timeout": false,
+      "elapsed_seconds": 6.832,
+      "log": "log/uart_ahb_transfer_test_1.log",
+      "options": ""
+    },
+    {
+      "test": "uart_ahb_idle_test",
+      "seed": 1,
+      "status": "PASS",
+      "exit_code": 0,
+      "timeout": false,
+      "elapsed_seconds": 6.883,
+      "log": "log/uart_ahb_idle_test_1.log",
+      "options": ""
+    },
+    {
+      "test": "uart_reserved_access_test",
+      "seed": 1,
+      "status": "PASS",
+      "exit_code": 0,
+      "timeout": false,
+      "elapsed_seconds": 6.933,
+      "log": "log/uart_reserved_access_test_1.log",
+      "options": ""
+    },
+    {
+      "test": "uart_baud_test",
+      "seed": 1,
+      "status": "PASS",
+      "exit_code": 0,
+      "timeout": false,
+      "elapsed_seconds": 67.285,
+      "log": "log/uart_baud_test_1.log",
+      "options": ""
+    },
+    {
+      "test": "uart_baud_disable_test",
+      "seed": 1,
+      "status": "PASS",
+      "exit_code": 0,
+      "timeout": false,
+      "elapsed_seconds": 6.883,
+      "log": "log/uart_baud_disable_test_1.log",
+      "options": ""
+    },
+    {
+      "test": "uart_tx_format_test",
+      "seed": 1,
+      "status": "FAIL",
+      "exit_code": 2,
+      "timeout": false,
+      "elapsed_seconds": 7.235,
+      "log": "log/uart_tx_format_test_1.log",
+      "options": ""
+    },
+    {
+      "test": "uart_tx_data_test",
+      "seed": 1,
+      "status": "PASS",
+      "exit_code": 0,
+      "timeout": false,
+      "elapsed_seconds": 7.134,
+      "log": "log/uart_tx_data_test_1.log",
+      "options": ""
+    },
+    {
+      "test": "uart_rx_format_test",
+      "seed": 1,
+      "status": "PASS",
+      "exit_code": 0,
+      "timeout": false,
+      "elapsed_seconds": 7.335,
+      "log": "log/uart_rx_format_test_1.log",
+      "options": ""
+    },
+    {
+      "test": "uart_rx_data_test",
+      "seed": 1,
+      "status": "PASS",
+      "exit_code": 0,
+      "timeout": false,
+      "elapsed_seconds": 7.286,
+      "log": "log/uart_rx_data_test_1.log",
+      "options": ""
+    },
+    {
+      "test": "uart_rx_13x_div2_test",
+      "seed": 1,
+      "status": "FAIL",
+      "exit_code": 2,
+      "timeout": false,
+      "elapsed_seconds": 7.031,
+      "log": "log/uart_rx_13x_div2_test_1.log",
+      "options": ""
+    },
+    {
+      "test": "uart_tx_fifo_test",
+      "seed": 1,
+      "status": "PASS",
+      "exit_code": 0,
+      "timeout": false,
+      "elapsed_seconds": 6.882,
+      "log": "log/uart_tx_fifo_test_1.log",
+      "options": ""
+    },
+    {
+      "test": "uart_tx_active_full_test",
+      "seed": 1,
+      "status": "PASS",
+      "exit_code": 0,
+      "timeout": false,
+      "elapsed_seconds": 7.735,
+      "log": "log/uart_tx_active_full_test_1.log",
+      "options": ""
+    },
+    {
+      "test": "uart_rx_fifo_test",
+      "seed": 1,
+      "status": "PASS",
+      "exit_code": 0,
+      "timeout": false,
+      "elapsed_seconds": 6.733,
+      "log": "log/uart_rx_fifo_test_1.log",
+      "options": ""
+    },
+    {
+      "test": "uart_irq_mask_test",
+      "seed": 1,
+      "status": "PASS",
+      "exit_code": 0,
+      "timeout": false,
+      "elapsed_seconds": 6.933,
+      "log": "log/uart_irq_mask_test_1.log",
+      "options": ""
+    },
+    {
+      "test": "uart_irq_tx_empty_test",
+      "seed": 1,
+      "status": "PASS",
+      "exit_code": 0,
+      "timeout": false,
+      "elapsed_seconds": 6.884,
+      "log": "log/uart_irq_tx_empty_test_1.log",
+      "options": ""
+    },
+    {
+      "test": "uart_irq_tx_full_test",
+      "seed": 1,
+      "status": "PASS",
+      "exit_code": 0,
+      "timeout": false,
+      "elapsed_seconds": 7.134,
+      "log": "log/uart_irq_tx_full_test_1.log",
+      "options": ""
+    },
+    {
+      "test": "uart_irq_rx_empty_test",
+      "seed": 1,
+      "status": "PASS",
+      "exit_code": 0,
+      "timeout": false,
+      "elapsed_seconds": 6.985,
+      "log": "log/uart_irq_rx_empty_test_1.log",
+      "options": ""
+    },
+    {
+      "test": "uart_irq_rx_full_test",
+      "seed": 1,
+      "status": "PASS",
+      "exit_code": 0,
+      "timeout": false,
+      "elapsed_seconds": 7.184,
+      "log": "log/uart_irq_rx_full_test_1.log",
+      "options": ""
+    },
+    {
+      "test": "uart_parity_error_test",
+      "seed": 1,
+      "status": "FAIL",
+      "exit_code": 2,
+      "timeout": false,
+      "elapsed_seconds": 7.082,
+      "log": "log/uart_parity_error_test_1.log",
+      "options": ""
+    },
+    {
+      "test": "uart_parity_disabled_test",
+      "seed": 1,
+      "status": "PASS",
+      "exit_code": 0,
+      "timeout": false,
+      "elapsed_seconds": 6.983,
+      "log": "log/uart_parity_disabled_test_1.log",
+      "options": ""
+    },
+    {
+      "test": "uart_tx_parity_bug_test",
+      "seed": 1,
+      "status": "FAIL",
+      "exit_code": 2,
+      "timeout": false,
+      "elapsed_seconds": 6.833,
+      "log": "log/uart_tx_parity_bug_test_1.log",
+      "options": ""
+    },
+    {
+      "test": "uart_rx_parity_bug_test",
+      "seed": 1,
+      "status": "FAIL",
+      "exit_code": 2,
+      "timeout": false,
+      "elapsed_seconds": 7.133,
+      "log": "log/uart_rx_parity_bug_test_1.log",
+      "options": ""
+    },
+    {
+      "test": "uart_smoke_test",
+      "seed": 1,
+      "status": "PASS",
+      "exit_code": 0,
+      "timeout": false,
+      "elapsed_seconds": 7.135,
+      "log": "log/uart_smoke_test_1.log",
+      "options": ""
+    },
+    {
+      "test": "uart_duplex_random_test",
+      "seed": 1,
+      "status": "FAIL",
+      "exit_code": 2,
+      "timeout": false,
+      "elapsed_seconds": 7.335,
+      "log": "log/uart_duplex_random_test_1.log",
+      "options": ""
+    },
+    {
+      "test": "uart_duplex_random_test",
+      "seed": 2,
+      "status": "FAIL",
+      "exit_code": 2,
+      "timeout": false,
+      "elapsed_seconds": 7.182,
+      "log": "log/uart_duplex_random_test_2.log",
+      "options": ""
+    },
+    {
+      "test": "uart_duplex_random_test",
+      "seed": 3,
+      "status": "FAIL",
+      "exit_code": 2,
+      "timeout": false,
+      "elapsed_seconds": 7.634,
+      "log": "log/uart_duplex_random_test_3.log",
+      "options": ""
+    },
+    {
+      "test": "uart_duplex_random_test",
+      "seed": 4,
+      "status": "FAIL",
+      "exit_code": 2,
+      "timeout": false,
+      "elapsed_seconds": 7.231,
+      "log": "log/uart_duplex_random_test_4.log",
+      "options": ""
+    },
+    {
+      "test": "uart_duplex_random_test",
+      "seed": 5,
+      "status": "FAIL",
+      "exit_code": 2,
+      "timeout": false,
+      "elapsed_seconds": 7.083,
+      "log": "log/uart_duplex_random_test_5.log",
+      "options": ""
+    },
+    {
+      "test": "uart_reset_traffic_test",
+      "seed": 1,
+      "status": "PASS",
+      "exit_code": 0,
+      "timeout": false,
+      "elapsed_seconds": 7.084,
+      "log": "log/uart_reset_traffic_test_1.log",
+      "options": ""
+    },
+    {
+      "test": "uart_monitor_tail_test",
+      "seed": 1,
+      "status": "PASS",
+      "exit_code": 0,
+      "timeout": false,
+      "elapsed_seconds": 7.133,
+      "log": "log/uart_monitor_tail_test_1.log",
+      "options": ""
+    }
+  ]
+}

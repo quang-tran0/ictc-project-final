@@ -41,6 +41,12 @@ class uart_base_test extends uvm_test;
     task write_reg(bit [9:0] addr, bit [31:0] data);
         logic [31:0] unused; access(1,addr,data,unused);
     endtask
+    // The testcase establishes full occupancy from its stimulus before declaring
+    // a deliberate rejected write. DUT FSR never supplies expected data/acceptance.
+    task reject_full_tx(bit [7:0] data);
+        env.scoreboard.expected_tx_rejections++;
+        write_reg('h18,data);
+    endtask
     task read_reg(bit [9:0] addr, output logic [31:0] data);
         access(0,addr,0,data);
     endtask
@@ -53,6 +59,10 @@ class uart_base_test extends uvm_test;
     task configure_uart(int width=8, int parity=0, int stops=1, bit osm=0, int divisor=4);
         check_value(env.scoreboard.tx_expected.size()==0 && env.scoreboard.rx_expected.size()==0,
               "CONFIG_PENDING", "Reconfiguration with undrained traffic");
+        // Specification Chapter 3 defines initialization, not phase-preserving
+        // live divisor changes. Each independent format starts from reset.
+        reset_dut();
+        `uvm_info("FRAME_CONFIG",$sformatf("width=%0d parity=%0d stops=%0d osm=%0d divisor=%0d",width,parity,stops,osm,divisor),UVM_LOW)
         write_reg('h0c,3); write_reg(0,osm);
         write_reg(4,divisor & 'hff); write_reg(8,divisor >> 8);
         uart_cfg.data_width=width; uart_cfg.parity=uart_configuration::uart_parity_e'(parity);
@@ -79,7 +89,7 @@ class uart_base_test extends uvm_test;
                 read_reg('h14,status);
                 if (status[3]) #(uart_cfg.bit_period()/4);
             end
-            if (status[3]) `uvm_fatal("RX_TIMEOUT", "No receive data before deadline")
+            if (status[3]) `uvm_fatal("RX_TIMEOUT", $sformatf("FSR=%08h expected_remaining=%0d observed_frames=%0d reads=%0d",status,env.scoreboard.rx_expected.size(),env.scoreboard.rx_frame_count,env.scoreboard.rx_count))
             read_reg('h1c,data);
         end
         cycles();

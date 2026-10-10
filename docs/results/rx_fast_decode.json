@@ -1,0 +1,130 @@
+[
+  {
+    "start_ns": 1026.0,
+    "data": "0x17",
+    "expected_parity": null,
+    "actual_parity": null,
+    "parity_ok": true,
+    "stop_ok": true
+  },
+  {
+    "start_ns": 3106.0,
+    "data": "0x17",
+    "expected_parity": null,
+    "actual_parity": null,
+    "parity_ok": true,
+    "stop_ok": true
+  },
+  {
+    "start_ns": 5186.0,
+    "data": "0x17",
+    "expected_parity": null,
+    "actual_parity": null,
+    "parity_ok": true,
+    "stop_ok": true
+  },
+  {
+    "start_ns": 7266.0,
+    "data": "0x17",
+    "expected_parity": null,
+    "actual_parity": null,
+    "parity_ok": true,
+    "stop_ok": true
+  },
+  {
+    "start_ns": 9346.0,
+    "data": "0x17",
+    "expected_parity": null,
+    "actual_parity": null,
+    "parity_ok": true,
+    "stop_ok": true
+  },
+  {
+    "start_ns": 11426.0,
+    "data": "0x17",
+    "expected_parity": null,
+    "actual_parity": null,
+    "parity_ok": true,
+    "stop_ok": true
+  },
+  {
+    "start_ns": 13506.0,
+    "data": "0x17",
+    "expected_parity": null,
+    "actual_parity": null,
+    "parity_ok": true,
+    "stop_ok": true
+  },
+  {
+    "start_ns": 15586.0,
+    "data": "0x17",
+    "expected_parity": null,
+    "actual_parity": null,
+    "parity_ok": true,
+    "stop_ok": true
+  },
+  {
+    "start_ns": 19216.0,
+    "data": "0x17",
+    "expected_parity": null,
+    "actual_parity": null,
+    "parity_ok": true,
+    "stop_ok": true
+  },
+  {
+    "start_ns": 21036.0,
+    "data": "0x17",
+    "expected_parity": null,
+    "actual_parity": null,
+    "parity_ok": true,
+    "stop_ok": true
+  },
+  {
+    "start_ns": 22856.0,
+    "data": "0x17",
+    "expected_parity": null,
+    "actual_parity": null,
+    "parity_ok": true,
+    "stop_ok": true
+  },
+  {
+    "start_ns": 24676.0,
+    "data": "0x17",
+    "expected_parity": null,
+    "actual_parity": null,
+    "parity_ok": true,
+    "stop_ok": true
+  },
+  {
+    "start_ns": 26496.0,
+    "data": "0x17",
+    "expected_parity": null,
+    "actual_parity": null,
+    "parity_ok": true,
+    "stop_ok": true
+  },
+  {
+    "start_ns": 28316.0,
+    "data": "0x17",
+    "expected_parity": null,
+    "actual_parity": null,
+    "parity_ok": true,
+    "stop_ok": true
+  },
+  {
+    "start_ns": 30136.0,
+    "data": "0x17",
+    "expected_parity": null,
+    "actual_parity": null,
+    "parity_ok": true,
+    "stop_ok": true
+  },
+  {
+    "start_ns": 31956.0,
+    "data": "0x17",
+    "expected_parity": null,
+    "actual_parity": null,
+    "parity_ok": true,
+    "stop_ok": true
+  }
+]

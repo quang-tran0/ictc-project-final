@@ -1,0 +1,263 @@
+[
+  {
+    "id": "REG-01",
+    "group": "1. Register",
+    "test": "uart_register_reset_test",
+    "description": "All defined reset values, idle TX, interrupt reset and reset after programmed state",
+    "spec": "2.2, Tables 2-3 to 2-10",
+    "checker": "Independent constants + register scoreboard; RBR undefined reset value excluded",
+    "bugs": ""
+  },
+  {
+    "id": "REG-02",
+    "group": "1. Register",
+    "test": "uart_register_access_test",
+    "description": "Walking-one/zero across 32 bits, 100 random writes/reads, implemented masks, FSR RO bits and ignored RBR writes",
+    "spec": "2.1\u20132.2",
+    "checker": "Register prediction and explicit expected values; compare all read data bits",
+    "bugs": ""
+  },
+  {
+    "id": "REG-03",
+    "group": "1. Register",
+    "test": "uart_regmodel_test",
+    "description": "UVM RAL frontdoor reset/read/write/mirror over AHB",
+    "spec": "2.2",
+    "checker": "RAL mirror and independent register scoreboard",
+    "bugs": ""
+  },
+  {
+    "id": "AHB-01",
+    "group": "2. AHB access",
+    "test": "uart_ahb_transfer_test",
+    "description": "400 mixed SINGLE and one-beat INCR transfers with wait states",
+    "spec": "1.2, 1.6.1",
+    "checker": "Completed transfer count and independent write/read data checks",
+    "bugs": ""
+  },
+  {
+    "id": "AHB-02",
+    "group": "2. AHB access",
+    "test": "uart_ahb_idle_test",
+    "description": "IDLE, BUSY and unselected writes must have no side effect",
+    "spec": "1.6.1",
+    "checker": "Unchanged register value and zero extra completed transfers",
+    "bugs": ""
+  },
+  {
+    "id": "AHB-03",
+    "group": "2. AHB access",
+    "test": "uart_reserved_access_test",
+    "description": "All 248 aligned reserved words, read and write, recovery after every error",
+    "spec": "1.7.3, 2.2",
+    "checker": "496 HRESP errors, two-cycle ERROR protocol, FFFFFFFF read data, subsequent legal access",
+    "bugs": ""
+  },
+  {
+    "id": "BAUD-01",
+    "group": "3. Baud generator",
+    "test": "uart_baud_test",
+    "description": "26 settings: both oversampling modes, all 14 spec-table examples, divisors 1/2/255/256/257/65535",
+    "spec": "1.5 Tables 1-4, 1-5",
+    "checker": "Measure actual TX data-bit edge interval; end-to-end TX and RX at each setting",
+    "bugs": ""
+  },
+  {
+    "id": "BAUD-02",
+    "group": "3. Baud generator",
+    "test": "uart_baud_disable_test",
+    "description": "BGE=0 pauses transmission; enabling drains queued bytes",
+    "spec": "2.2.4 BGE",
+    "checker": "Zero frames/idle output while disabled; compare both queued frames after enable",
+    "bugs": ""
+  },
+  {
+    "id": "TX-01",
+    "group": "4. UART TX",
+    "test": "uart_tx_format_test",
+    "description": "48 frame configurations, each with 00/FF/55/AA: 192 frames",
+    "spec": "1.6.2.1, 2.2.4",
+    "checker": "Pin decoder checks data width/order, data, parity, every stop-bit center",
+    "bugs": "UART-001"
+  },
+  {
+    "id": "TX-02",
+    "group": "4. UART TX",
+    "test": "uart_tx_data_test",
+    "description": "All 256 byte values at 8N1",
+    "spec": "1.6.2.1, 1.7.1",
+    "checker": "TBR-to-pin scoreboard, exact count, pending and unexpected frame guards",
+    "bugs": ""
+  },
+  {
+    "id": "RX-01",
+    "group": "5. UART RX",
+    "test": "uart_rx_format_test",
+    "description": "48 configurations with 00/FF/55/AA: 192 back-to-back frames",
+    "spec": "1.6.2.2, 2.2.4",
+    "checker": "Monitor validates stimulus; independent data expected at RBR; valid parity leaves status clear",
+    "bugs": ""
+  },
+  {
+    "id": "RX-02",
+    "group": "5. UART RX",
+    "test": "uart_rx_data_test",
+    "description": "All 256 byte values at 8N1",
+    "spec": "1.6.2.2, 1.7.2",
+    "checker": "Stimulus-to-monitor-to-RBR comparisons and exact receive count",
+    "bugs": ""
+  },
+  {
+    "id": "RX-03",
+    "group": "5. UART RX",
+    "test": "uart_rx_13x_div2_test",
+    "description": "5N1 at 13x/divisor 2: eight spaced frames as control, then eight back-to-back 0x17 frames",
+    "spec": "1.5, 1.6.2.2",
+    "checker": "Pin stimulus decoder confirms 260 ns bits; RBR must return 0x17 for all 16 frames; off-clock-edge stimulus",
+    "bugs": "UART-003"
+  },
+  {
+    "id": "FIFO-01",
+    "group": "6. FIFO",
+    "test": "uart_tx_fifo_test",
+    "description": "Three paused TX fill/drain rounds; 16 FIFO entries + one prefetched byte; nine ignored full writes; wraparound",
+    "spec": "1.2, 1.7.1, 1.7.3",
+    "checker": "FSR boundaries, explicit rejected-write expectations, all 51 accepted bytes in order",
+    "bugs": ""
+  },
+  {
+    "id": "FIFO-02",
+    "group": "6. FIFO",
+    "test": "uart_tx_active_full_test",
+    "description": "Fill TX FIFO with BGE enabled and slow baud, reject three extra writes, drain",
+    "spec": "1.7.3",
+    "checker": "Independent acceptance/rejection list, FSR full/empty, 17 exact frame comparisons",
+    "bugs": ""
+  },
+  {
+    "id": "FIFO-03",
+    "group": "6. FIFO",
+    "test": "uart_rx_fifo_test",
+    "description": "Three fill/drain rounds of exactly 16 RX bytes; FIFO pointer wraparound",
+    "spec": "1.2, 1.7.2",
+    "checker": "FSR after each receive, ordered 48 RBR comparisons, final empty",
+    "bugs": ""
+  },
+  {
+    "id": "IRQ-01",
+    "group": "7. Interrupt",
+    "test": "uart_irq_mask_test",
+    "description": "All 32 enable masks at reset FIFO status 0xA",
+    "spec": "1.7, 2.2.5",
+    "checker": "IRQ equals OR of enabled active sources, checked from independent expected status",
+    "bugs": ""
+  },
+  {
+    "id": "IRQ-02",
+    "group": "7. Interrupt",
+    "test": "uart_irq_tx_empty_test",
+    "description": "Assert TX empty, clear when queued nonempty, reassert after drain, mask",
+    "spec": "1.7.1, 2.2.5",
+    "checker": "Pin-level IRQ checks and two transmitted bytes",
+    "bugs": ""
+  },
+  {
+    "id": "IRQ-03",
+    "group": "7. Interrupt",
+    "test": "uart_irq_tx_full_test",
+    "description": "Assert TX full, deassert after FIFO drain",
+    "spec": "1.7.1, 2.2.5",
+    "checker": "Pin-level IRQ plus exact 17-byte transfer count",
+    "bugs": ""
+  },
+  {
+    "id": "IRQ-04",
+    "group": "7. Interrupt",
+    "test": "uart_irq_rx_empty_test",
+    "description": "Assert RX empty, clear on receive, reassert on drain, mask",
+    "spec": "1.7.2, 2.2.5",
+    "checker": "Pin-level IRQ and RBR comparison",
+    "bugs": ""
+  },
+  {
+    "id": "IRQ-05",
+    "group": "7. Interrupt",
+    "test": "uart_irq_rx_full_test",
+    "description": "Assert on 16th received byte, clear on first RBR read",
+    "spec": "1.7.2, 2.2.5",
+    "checker": "IRQ levels and all 16 received bytes compared",
+    "bugs": ""
+  },
+  {
+    "id": "PAR-01",
+    "group": "8. Parity error",
+    "test": "uart_parity_error_test",
+    "description": "Bad parity across both modes, all widths, even/odd; sticky flag, write-zero, W1C, IRQ masking",
+    "spec": "2.2.4 PEN/EPS, 2.2.5 bit4, 2.2.6 bit4",
+    "checker": "Wire error injection independently monitored; FSR and IRQ explicit checks; W1C clearing blocked by missing set",
+    "bugs": "UART-002"
+  },
+  {
+    "id": "PAR-02",
+    "group": "8. Parity error",
+    "test": "uart_parity_disabled_test",
+    "description": "PEN=0 ignores requested parity injection; 00 and FF data",
+    "spec": "2.2.4 PEN",
+    "checker": "No parity slot generated; no FSR error or parity IRQ; two RBR comparisons",
+    "bugs": ""
+  },
+  {
+    "id": "PAR-03",
+    "group": "8. Parity error",
+    "test": "uart_tx_parity_bug_test",
+    "description": "Minimal 8E1 TX reproduction with bytes 00 and 01",
+    "spec": "1.6.2.1, 2.2.4 EPS",
+    "checker": "UVM serial parity checker and independent offline VCD decoder",
+    "bugs": "UART-001"
+  },
+  {
+    "id": "PAR-04",
+    "group": "8. Parity error",
+    "test": "uart_rx_parity_bug_test",
+    "description": "Minimal 8E1 RX wrong-parity reproduction: 00 with parity=1",
+    "spec": "2.2.4, 2.2.5, 2.2.6",
+    "checker": "Independent VCD proof of injected parity error; FSR/IRQ checks; no error demotion",
+    "bugs": "UART-002"
+  },
+  {
+    "id": "SYS-01",
+    "group": "9. Integration and checker",
+    "test": "uart_smoke_test",
+    "description": "Reset, initialization, two TX bytes and one RX byte",
+    "spec": "Chapter 3",
+    "checker": "Register, bidirectional scoreboard and exact counts",
+    "bugs": ""
+  },
+  {
+    "id": "SYS-02",
+    "group": "9. Integration and checker",
+    "test": "uart_duplex_random_test",
+    "description": "24 random configurations x 8 simultaneous TX/RX frames per seed; five seeds",
+    "spec": "1.2, 1.6, Chapter 3",
+    "checker": "Independent per-direction queues, all frame properties, final FSR/counts; reset before each configuration",
+    "bugs": "UART-001; UART-003"
+  },
+  {
+    "id": "SYS-03",
+    "group": "9. Integration and checker",
+    "test": "uart_reset_traffic_test",
+    "description": "Reset during TX, reset during RX, recovery and subsequent transfers",
+    "spec": "2.2 defaults, verification robustness",
+    "checker": "Abort old frames/expectations; reset register/status checks; new frames compared",
+    "bugs": ""
+  },
+  {
+    "id": "SYS-04",
+    "group": "9. Integration and checker",
+    "test": "uart_monitor_tail_test",
+    "description": "Checker self-test: incomplete trailing TX and RX frame must prevent silent pass",
+    "spec": "UVM GUIDE 7\u20138, 15",
+    "checker": "Isolated synthetic loopback, exactly one caught monitor error per direction; no DUT error catchers",
+    "bugs": ""
+  }
+]

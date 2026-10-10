@@ -1,0 +1,39 @@
+UART strict regression
+Configuration: regress.cfg
+Coverage: ON
+Base seed: 1
+Complete: True; unexecuted: 0
+Total: 33 PASS: 23 FAIL: 10 UNKNOWN: 0
+PASS    uart_register_reset_test seed=1 exit=0 timeout=False log=log/uart_register_reset_test_1.log
+PASS    uart_register_access_test seed=1 exit=0 timeout=False log=log/uart_register_access_test_1.log
+PASS    uart_regmodel_test seed=1 exit=0 timeout=False log=log/uart_regmodel_test_1.log
+PASS    uart_ahb_transfer_test seed=1 exit=0 timeout=False log=log/uart_ahb_transfer_test_1.log
+PASS    uart_ahb_idle_test seed=1 exit=0 timeout=False log=log/uart_ahb_idle_test_1.log
+PASS    uart_reserved_access_test seed=1 exit=0 timeout=False log=log/uart_reserved_access_test_1.log
+PASS    uart_baud_test seed=1 exit=0 timeout=False log=log/uart_baud_test_1.log
+PASS    uart_baud_disable_test seed=1 exit=0 timeout=False log=log/uart_baud_disable_test_1.log
+FAIL    uart_tx_format_test seed=1 exit=2 timeout=False log=log/uart_tx_format_test_1.log
+PASS    uart_tx_data_test seed=1 exit=0 timeout=False log=log/uart_tx_data_test_1.log
+PASS    uart_rx_format_test seed=1 exit=0 timeout=False log=log/uart_rx_format_test_1.log
+PASS    uart_rx_data_test seed=1 exit=0 timeout=False log=log/uart_rx_data_test_1.log
+FAIL    uart_rx_13x_div2_test seed=1 exit=2 timeout=False log=log/uart_rx_13x_div2_test_1.log
+PASS    uart_tx_fifo_test seed=1 exit=0 timeout=False log=log/uart_tx_fifo_test_1.log
+PASS    uart_tx_active_full_test seed=1 exit=0 timeout=False log=log/uart_tx_active_full_test_1.log
+PASS    uart_rx_fifo_test seed=1 exit=0 timeout=False log=log/uart_rx_fifo_test_1.log
+PASS    uart_irq_mask_test seed=1 exit=0 timeout=False log=log/uart_irq_mask_test_1.log
+PASS    uart_irq_tx_empty_test seed=1 exit=0 timeout=False log=log/uart_irq_tx_empty_test_1.log
+PASS    uart_irq_tx_full_test seed=1 exit=0 timeout=False log=log/uart_irq_tx_full_test_1.log
+PASS    uart_irq_rx_empty_test seed=1 exit=0 timeout=False log=log/uart_irq_rx_empty_test_1.log
+PASS    uart_irq_rx_full_test seed=1 exit=0 timeout=False log=log/uart_irq_rx_full_test_1.log
+FAIL    uart_parity_error_test seed=1 exit=2 timeout=False log=log/uart_parity_error_test_1.log
+PASS    uart_parity_disabled_test seed=1 exit=0 timeout=False log=log/uart_parity_disabled_test_1.log
+FAIL    uart_tx_parity_bug_test seed=1 exit=2 timeout=False log=log/uart_tx_parity_bug_test_1.log
+FAIL    uart_rx_parity_bug_test seed=1 exit=2 timeout=False log=log/uart_rx_parity_bug_test_1.log
+PASS    uart_smoke_test seed=1 exit=0 timeout=False log=log/uart_smoke_test_1.log
+FAIL    uart_duplex_random_test seed=1 exit=2 timeout=False log=log/uart_duplex_random_test_1.log
+FAIL    uart_duplex_random_test seed=2 exit=2 timeout=False log=log/uart_duplex_random_test_2.log
+FAIL    uart_duplex_random_test seed=3 exit=2 timeout=False log=log/uart_duplex_random_test_3.log
+FAIL    uart_duplex_random_test seed=4 exit=2 timeout=False log=log/uart_duplex_random_test_4.log
+FAIL    uart_duplex_random_test seed=5 exit=2 timeout=False log=log/uart_duplex_random_test_5.log
+PASS    uart_reset_traffic_test seed=1 exit=0 timeout=False log=log/uart_reset_traffic_test_1.log
+PASS    uart_monitor_tail_test seed=1 exit=0 timeout=False log=log/uart_monitor_tail_test_1.log

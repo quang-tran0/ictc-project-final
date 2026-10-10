@@ -50,13 +50,17 @@ def make_report(results):
     lines = ['UART strict regression', f"Configuration: {results['config']}",
              f"Coverage: {results['coverage']}", f"Base seed: {results['base_seed']}"]
     counts = {key: sum(r['status'] == key for r in results['runs']) for key in ('PASS', 'FAIL', 'UNKNOWN')}
-    lines.append(f"Total: {len(results['runs'])} PASS: {counts['PASS']} FAIL: {counts['FAIL']} UNKNOWN: {counts['UNKNOWN']}")
+    unfinished = max(0, results.get('planned_count', len(results['runs'])) - len(results['runs']))
+    counts['UNKNOWN'] += unfinished
+    complete = results.get('complete', False) and not unfinished
+    lines.append(f"Complete: {complete}; unexecuted: {unfinished}")
+    lines.append(f"Total: {results.get('planned_count',len(results['runs']))} PASS: {counts['PASS']} FAIL: {counts['FAIL']} UNKNOWN: {counts['UNKNOWN']}")
     for row in results['runs']:
         lines.append(f"{row['status']:7} {row['test']} seed={row['seed']} exit={row['exit_code']} timeout={row['timeout']} log={row['log']}")
     Path('regress.rpt').write_text('\n'.join(lines)+'\n')
     Path('regress.json').write_text(json.dumps(results, indent=2)+'\n')
     print('\n'.join(lines), flush=True)
-    return 0 if results['runs'] and not counts['FAIL'] and not counts['UNKNOWN'] else 1
+    return 0 if complete and results['runs'] and not counts['FAIL'] and not counts['UNKNOWN'] else 1
 
 
 def main():
@@ -76,11 +80,14 @@ def main():
         return make_report(results)
     cov, timeout, tests = read_config(Path(args.file))
     Path('log').mkdir(exist_ok=True)
+    results = {'config': args.file, 'coverage': cov, 'base_seed': args.seed, 'planned_count': sum(n for _, n, _ in tests),
+               'complete': False, 'planned_runs': [dict(test=name,seed=args.seed+i,options=opts)
+                   for name,n,opts in tests for i in range(n)], 'runs': []}
+    Path('regress.json').write_text(json.dumps(results, indent=2)+'\n')
     code, timed_out = execute(['make', 'build', f'COV={cov}'], Path('build.log'), timeout)
     if code != 0:
         print('Build failed; see sim/build.log', flush=True)
         return 2
-    results = {'config': args.file, 'coverage': cov, 'base_seed': args.seed, 'runs': []}
     for name, repetitions, opts in tests:
         for repeat in range(repetitions):
             seed = args.seed + repeat
@@ -97,6 +104,7 @@ def main():
             results['runs'].append(row)
             Path('regress.json').write_text(json.dumps(results, indent=2)+'\n')
             print(f'{status:7} {name} seed={seed} ({row["elapsed_seconds"]}s)', flush=True)
+    results['complete'] = True
     return make_report(results)
 
 

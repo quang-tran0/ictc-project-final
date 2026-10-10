@@ -1,0 +1,18 @@
+Read-only final uart_rx_13x_div2_test seed=1 waveform; times in ns.
+All 16 input frames independently decode as 0x17 with a valid stop bit.
+
+Control: one extra idle bit
+Input starts: [1026.0, 3106.0, 5186.0, 7266.0, 9346.0, 11426.0, 13506.0, 15586.0]
+Input frame-start interval: 2080
+rx_wr rising edges: [2845.0, 4925.0, 7005.0, 9085.0, 11165.0, 13245.0, 15325.0, 17405.0]
+rx_wr intervals: [2080.0, 2080.0, 2080.0, 2080.0, 2080.0, 2080.0, 2080.0]
+
+Contiguous: one stop bit, no extra idle
+Input starts: [19216.0, 21036.0, 22856.0, 24676.0, 26496.0, 28316.0, 30136.0, 31956.0]
+Input frame-start interval: 1820
+rx_wr rising edges: [21035.0, 22875.0, 24715.0, 26555.0, 28395.0, 30235.0, 32075.0, 33915.0]
+rx_wr intervals: [1840.0, 1840.0, 1840.0, 1840.0, 1840.0, 1840.0, 1840.0]
+
+Control: all eight RBR reads match 0x17.
+Contiguous: first seven match; final RBR is 0x1B (see minimal testcase log).
+Inference: accumulating receiver timing lag; protected internal source cause is not observable.

@@ -1,0 +1,3 @@
+Read-only trace from final uart_rx_parity_bug_test seed=1 waveform; times in ns.
+tb.dut.s_parrity_error: [(0.0, '0')]; no assertion
+tb.dut.parrity_error_status: [(0.0, '0')]; no assertion

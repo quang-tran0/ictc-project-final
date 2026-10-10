@@ -1,0 +1,67 @@
+[
+  {
+    "item": "Functional aggregate",
+    "value": "97.50%",
+    "note": "Four covergroups; results/functional_coverage.txt. Includes completed failing runs, not compliance."
+  },
+  {
+    "item": "Functional bins",
+    "value": "449 / 450 (99.77% tool display)",
+    "note": "Only missing bin: FSR parity_error=1; blocked by UART-002."
+  },
+  {
+    "item": "Bus group",
+    "value": "100%",
+    "note": "33/33 bins; register/direction cross 18/18; reserved errors; SINGLE and one-beat INCR."
+  },
+  {
+    "item": "Frame group",
+    "value": "100%",
+    "note": "96/96 format cross bins, 256/256 payload bins; exercise coverage includes failing frames."
+  },
+  {
+    "item": "Status group",
+    "value": "90%",
+    "note": "FSR parity_error=1 never observed; other FSR states hit."
+  },
+  {
+    "item": "IRQ group",
+    "value": "100%",
+    "note": "All 32 masks and both levels observed. Parity IRQ assertion remains blocked by UART-002."
+  },
+  {
+    "item": "Available DUT statements",
+    "value": "1 / 1 (100%)",
+    "note": "Only exposed instrumented statement; protected implementation bodies are not covered as source."
+  },
+  {
+    "item": "Available DUT expressions",
+    "value": "4 / 5 (80%)",
+    "note": "Top-level IRQ expression; parity-error contribution missing."
+  },
+  {
+    "item": "Available DUT toggles",
+    "value": "550 / 596 (92.28%)",
+    "note": "Readable hierarchy signals/ports; see results/dut_code_coverage.txt."
+  },
+  {
+    "item": "Available DUT code aggregate",
+    "value": "90.76%",
+    "note": "Filtered /tb/dut recursive report; NOT full internal RTL code coverage."
+  },
+  {
+    "item": "Parity W1C and sticky behavior",
+    "value": "BLOCKED",
+    "note": "UART-002 prevents initial set. Returning zero after W1C is insufficient proof."
+  },
+  {
+    "item": "Live divisor reconfiguration",
+    "value": "NOT CLAIMED",
+    "note": "Independent configurations reset per Chapter 3; live switch timing unspecified."
+  },
+  {
+    "item": "Coverage merge inputs",
+    "value": "33 completed runs",
+    "note": "Exact final manifest; stale UCDB files excluded; results/coverage_inputs.txt."
+  }
+]

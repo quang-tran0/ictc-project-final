@@ -5,6 +5,9 @@ module tb;
     `include "uvm_macros.svh"
     ahb_if ahb_vif();
     uart_if uart_vif();
+    uart_if checker_vif();
+    assign checker_vif.rx=checker_vif.tx;
+    assign checker_vif.reset_n=ahb_vif.HRESETn;
     always #5ns ahb_vif.HCLK = ~ahb_vif.HCLK;
     assign uart_vif.reset_n = ahb_vif.HRESETn;
     uart_top dut (
@@ -19,6 +22,7 @@ module tb;
     initial begin
         uvm_config_db#(virtual ahb_if)::set(null,"uvm_test_top","ahb_vif",ahb_vif);
         uvm_config_db#(virtual uart_if)::set(null,"uvm_test_top","uart_vif",uart_vif);
+        uvm_config_db#(virtual uart_if)::set(null,"uvm_test_top","checker_vif",checker_vif);
         run_test();
     end
     initial begin

@@ -1,0 +1,14 @@
+Recursive Coverage Report Summary Data by instance
+
+=================================================================================
+=== Instance: /tb/dut
+=== Design Unit: work.uart_top
+=================================================================================
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Expressions                      5         4         1    80.00%
+    Statements                       1         1         0   100.00%
+    Toggles                        596       550        46    92.28%
+
+
+Total Coverage By Instance (filtered view): 90.76%

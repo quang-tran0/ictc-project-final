@@ -34,4 +34,7 @@ package test_pkg;
     `include "uart_regmodel_test.sv"
     `include "uart_tx_parity_bug_test.sv"
     `include "uart_rx_parity_bug_test.sv"
+    `include "uart_monitor_tail_test.sv"
+    `include "uart_tx_active_full_test.sv"
+    `include "uart_rx_13x_div2_test.sv"
 endpackage
