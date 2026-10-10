@@ -15,4 +15,3 @@ ${UART_IP_VERIF_PATH}/tb/env_pkg.sv
 ${UART_IP_VERIF_PATH}/sequences/seq_pkg.sv
 ${UART_IP_VERIF_PATH}/testcases/test_pkg.sv
 ${UART_IP_VERIF_PATH}/tb/testbench.sv
-

@@ -35,10 +35,20 @@ module tb;
     initial begin
         ahb_vif.HCLK = 0;
         ahb_vif.HRESETn = 0;
-        #100;
+        #100ns;
         ahb_vif.HRESETn = 1;
+    end
 
-        run_test("uart_base_test");
+    initial begin
+        uvm_config_db#(virtual ahb_if)::set(
+            null, "uvm_test_top", "ahb_vif", ahb_vif
+        );
+
+        uvm_config_db#(virtual uart_if)::set(
+            null, "uvm_test_top", "uart_vif", uart_vif
+        );
+
+        run_test();
     end
 
     initial begin
