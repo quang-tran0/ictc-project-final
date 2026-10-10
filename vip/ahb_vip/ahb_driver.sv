@@ -10,7 +10,7 @@ class ahb_driver extends uvm_driver#(ahb_transaction);
 
     function void build_phase(uvm_phase phase);
         super.build_phase(phase);
-
+        
         if (!uvm_config_db#(ahb_configuration)::get(this, "", "cfg", cfg))
             `uvm_fatal("AHB_DRIVER", "Configuration not found in uvm_config_db")
 
@@ -21,6 +21,6 @@ class ahb_driver extends uvm_driver#(ahb_transaction);
     endfunction
 
     task run_phase(uvm_phase phase);
-    
+
     endtask
 endclass

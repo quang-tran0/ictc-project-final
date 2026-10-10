@@ -23,6 +23,6 @@ class ahb_monitor extends uvm_monitor;
     endfunction
 
     task run_phase(uvm_phase phase);
-    
+        
     endtask
 endclass
