@@ -1,5 +1,37 @@
 package test_pkg;
+    timeunit 1ns; timeprecision 1ps;
     import uvm_pkg::*;
-
+    import ahb_pkg::*;
+    import uart_pkg::*;
+    import seq_pkg::*;
+    import env_pkg::*;
+    import uart_regmodel_pkg::*;
+    `include "uvm_macros.svh"
     `include "uart_base_test.sv"
+    `include "uart_smoke_test.sv"
+    `include "uart_register_reset_test.sv"
+    `include "uart_register_access_test.sv"
+    `include "uart_ahb_transfer_test.sv"
+    `include "uart_ahb_idle_test.sv"
+    `include "uart_reserved_access_test.sv"
+    `include "uart_tx_format_test.sv"
+    `include "uart_rx_format_test.sv"
+    `include "uart_tx_data_test.sv"
+    `include "uart_rx_data_test.sv"
+    `include "uart_baud_disable_test.sv"
+    `include "uart_tx_fifo_test.sv"
+    `include "uart_rx_fifo_test.sv"
+    `include "uart_duplex_random_test.sv"
+    `include "uart_irq_mask_test.sv"
+    `include "uart_irq_tx_empty_test.sv"
+    `include "uart_irq_tx_full_test.sv"
+    `include "uart_irq_rx_empty_test.sv"
+    `include "uart_irq_rx_full_test.sv"
+    `include "uart_parity_error_test.sv"
+    `include "uart_parity_disabled_test.sv"
+    `include "uart_reset_traffic_test.sv"
+    `include "uart_baud_test.sv"
+    `include "uart_regmodel_test.sv"
+    `include "uart_tx_parity_bug_test.sv"
+    `include "uart_rx_parity_bug_test.sv"
 endpackage

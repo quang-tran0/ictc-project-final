@@ -12,3 +12,7 @@ sim/transcript
 sim/*.ucdb
 sim/vsim.dbg
 sim/tmp_report
+sim/regress.rpt
+sim/regress.json
+sim/coverage.txt
+__pycache__/
