@@ -18,11 +18,13 @@ class uart_agent extends uvm_agent;
         super.build_phase(phase);
         if (!uvm_config_db #(uart_configuration)::get(this, "", "cfg", cfg))
         `uvm_fatal("UART_CFG", $sformatf("No configuration for %s", get_full_name()))
+        if (cfg == null) `uvm_fatal("UART_CFG", "Null UART configuration")
         if (!cfg.is_valid())
         `uvm_fatal("UART_CFG", $sformatf("Invalid UART configuration: %s", cfg.sprint()))
         if (cfg.vif == null)
         `uvm_fatal("UART_VIF", $sformatf("No virtual interface for %s", get_full_name()))
 
+        is_active = cfg.is_active;
         uvm_config_db #(uart_configuration)::set(this, "monitor", "cfg", cfg);
         monitor = uart_monitor::type_id::create("monitor", this);
 

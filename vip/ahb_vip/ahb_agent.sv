@@ -1,14 +1,15 @@
 class ahb_agent extends uvm_agent;
     `uvm_component_utils(ahb_agent)
 
-    virtual ahb_if vif;
     ahb_configuration cfg;
     ahb_monitor monitor;
     ahb_driver driver;
     ahb_sequencer sequencer;
+    uvm_analysis_port #(ahb_transaction) monitor_ap;
 
     function new(string name="ahb_agent", uvm_component parent);
         super.new(name, parent);
+        monitor_ap = new("monitor_ap", this);
     endfunction
 
     function void build_phase(uvm_phase phase);
@@ -18,7 +19,8 @@ class ahb_agent extends uvm_agent;
             `uvm_fatal("AHB_AGENT", "Configuration not found in uvm_config_db")
 
         if (cfg == null) `uvm_fatal("AHB_AGENT", "Configuration is null")
-        if (cfg.vif == null) `uvm_fatal("AHB_AGENT", "Virtual interface is null")
+        if (!cfg.is_valid()) `uvm_fatal("AHB_AGENT", "Invalid configuration/interface")
+        is_active = cfg.is_active;
 
         uvm_config_db#(ahb_configuration)::set(this, "monitor", "cfg", cfg);
         monitor = ahb_monitor::type_id::create("monitor", this);
@@ -29,5 +31,11 @@ class ahb_agent extends uvm_agent;
             driver = ahb_driver::type_id::create("driver", this);
             sequencer = ahb_sequencer::type_id::create("sequencer", this);
         end
+    endfunction
+    function void connect_phase(uvm_phase phase);
+        super.connect_phase(phase);
+        monitor.analysis_port.connect(monitor_ap);
+        if (cfg.is_active == UVM_ACTIVE)
+            driver.seq_item_port.connect(sequencer.seq_item_export);
     endfunction
 endclass

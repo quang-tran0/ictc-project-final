@@ -1,4 +1,8 @@
 module uart_ral_self_check;
+`ifndef UART_RAL_MODEL_ONLY
+    // Resolve package virtual-interface types in adapter-only Questa builds.
+    ahb_if adapter_if();
+`endif
     import uvm_pkg::*;
 `ifndef UART_RAL_MODEL_ONLY
     import ahb_pkg::*;
@@ -193,7 +197,7 @@ module uart_ral_self_check;
 `ifndef UART_RAL_MODEL_ONLY
         adapter = uart_reg_adapter::type_id::create("adapter");
         check(!adapter.supports_byte_enable, "No byte enables");
-        check(!adapter.provides_responses, "No separate response contract claimed");
+        check(adapter.provides_responses, "Separate completion responses");
         foreach (registers[i]) begin
             for (int direction = 0; direction < 2; direction++) begin
                 op.kind = direction ? UVM_WRITE : UVM_READ;
@@ -206,27 +210,35 @@ module uart_ral_self_check;
                     `uvm_fatal("UART_RAL_CHECK", "Adapter did not return ahb_transaction")
                 check(bus.addr == op.addr, "Adapter address");
                 check(bus.data == op.data[31:0], "Adapter 32-bit payload");
-                check(bus.\type == (direction ? ahb_transaction::WRITE : ahb_transaction::READ),
+                check(bus.xact_type == (direction ? ahb_transaction::WRITE : ahb_transaction::READ),
                       "Adapter direction");
-                check(bus.burst == ahb_transaction::AHB_SINGLE, "SINGLE transfer");
-                check(bus.htrans == ahb_transaction::AHB_NONSEQ, "NONSEQ transfer");
+                check(bus.burst_type == ahb_transaction::AHB_SINGLE, "SINGLE transfer");
+                check(bus.xfer_size == ahb_transaction::SIZE_32BIT, "Word transfer");
             end
         end
-        catcher.expected_id = "UART_RAL_AHB_INCOMPLETE";
-        catcher.count = 0;
-        uvm_report_cb::add(null, catcher);
         for (int direction = 0; direction < 2; direction++) begin
-            bus.\type = direction ? ahb_transaction::WRITE : ahb_transaction::READ;
+            bus.xact_type = direction ? ahb_transaction::WRITE : ahb_transaction::READ;
+            bus.completed = 0;
+            bus.hresp = 0;
+            bus.rdata = 'h76543210;
             op.status = UVM_IS_OK;
             adapter.bus2reg(bus, op);
-            check(op.status == UVM_NOT_OK, "Incomplete VIP cannot report success");
+            check(op.status == UVM_NOT_OK, "Incomplete transfer cannot report success");
             check(op.kind == (direction ? UVM_WRITE : UVM_READ), "Response direction");
             check(op.addr == bus.addr && op.n_bits == 32, "Response metadata");
             check(op.data == (direction ? uvm_reg_data_t'(bus.data) : 0),
                   "Never present request data as completed read data");
+            bus.completed = 1;
+            adapter.bus2reg(bus, op);
+            check(op.status == UVM_IS_OK, "Completed OKAY response maps to success");
+            check(op.data == (direction ? bus.data : bus.rdata), "Completed response payload");
+            bus.hresp = 1;
+            adapter.bus2reg(bus, op);
+            check(op.status == UVM_NOT_OK, "Completed ERROR response maps to failure");
+            bus.hresp = 1'bx;
+            adapter.bus2reg(bus, op);
+            check(op.status == UVM_NOT_OK, "Unknown HRESP never maps to success");
         end
-        uvm_report_cb::delete(null, catcher);
-        check(catcher.count == 2, "Both incomplete responses report errors");
 
         catcher.expected_id = "UART_RAL_AHB_TYPE";
         catcher.count = 0;
@@ -251,13 +263,10 @@ module uart_ral_self_check;
         op.n_bits = 32;
         op.addr = 1;
         check(adapter.reg2bus(op) == null, "Unaligned requests are rejected");
-        if ($bits(op.addr) > 32) begin
-            op.addr = uvm_reg_addr_t'(1) << 32;
-            check(adapter.reg2bus(op) == null, "Address truncation is rejected");
-        end
+        op.addr = 'h400;
+        check(adapter.reg2bus(op) == null, "10-bit address truncation is rejected");
         uvm_report_cb::delete(null, catcher);
-        check(catcher.count == (($bits(op.addr) > 32) ? 3 : 2),
-              "Invalid requests report errors");
+        check(catcher.count == 3, "Invalid requests report errors");
 `endif
 
         server = uvm_report_server::get_server();

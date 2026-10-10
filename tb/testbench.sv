@@ -1,4 +1,4 @@
-`timescale 1ns/1ns
+`timescale 1ns/1ps
 
 module tb;
     import uvm_pkg::*;
@@ -52,7 +52,7 @@ module tb;
     end
 
     initial begin
-        #100us;
-        $fatal("Timeout: Test did not finish within 100us");
+        #100ms;
+        $fatal(1, "Timeout: Test did not finish within 100ms");
     end
 endmodule

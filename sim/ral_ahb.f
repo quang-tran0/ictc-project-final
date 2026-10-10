@@ -1,4 +1,4 @@
-// Optional adapter check, once the existing AHB package compiles.
+// Structural register check plus finalized AHB adapter contract.
 +incdir+${UART_IP_VERIF_PATH}/regmodel/register
 +incdir+${UART_IP_VERIF_PATH}/regmodel
 +incdir+${UART_IP_VERIF_PATH}/regmodel/checks

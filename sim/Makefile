@@ -25,11 +25,11 @@ endif
 
 ##==============================================================
 VLOG =  vlog ${CMP_COV_OPT} \
-        -timescale "1us/1ns" \
+        -timescale "1ns/1ps" \
         +define+UVM_NO_DPI \
         -mfcu \
         -suppress 2181 \
-        +acc=rmb \
+        +acc=rb \
         +incdir+$(UVM_HOME)/src \
         $(UVM_HOME)/src/uvm.sv
 		
@@ -52,7 +52,7 @@ RAL_VSIM_ARGS ?=
 ral-build:
 	mkdir -p log/ral_self_check
 	test -d $(RAL_WORK) || vlib $(RAL_WORK)
-	$(filter-out +acc=rmb,$(VLOG)) -work $(RAL_WORK) -f $(RAL_FILELIST) \
+	$(filter-out +acc=rb,$(VLOG)) -work $(RAL_WORK) -f $(RAL_FILELIST) \
 	  +define+UVM_OBJECT_MUST_HAVE_CONSTRUCTOR -l log/ral_self_check/build.log
 
 ral-check: ral-build
@@ -75,7 +75,7 @@ run:
 
 vlib:
 	mkdir -p log
-	vlib work
+	test -d work || vlib work
 	vmap work work
 
 wave:
@@ -110,3 +110,37 @@ help:
 	@echo "** make clean: clean all compiled data"
 	@echo "****************************************"
 	@echo ""
+
+# Independent UVM 1.2 build, no project env/sequence dependency.
+QUESTA_HOME ?= $(abspath $(dir $(shell command -v vlog))/..)
+VIP_UVM_HOME ?= $(QUESTA_HOME)/verilog_src/uvm-1.2
+UART_IP_VERIF_PATH ?= $(abspath ..)
+AHB_VIP_ROOT ?= $(UART_IP_VERIF_PATH)/vip/ahb_vip
+UART_VIP_ROOT ?= $(UART_IP_VERIF_PATH)/vip/uart_vip
+UVM_HOME ?= $(QUESTA_HOME)/verilog_src/uvm-1.2
+export UART_IP_VERIF_PATH AHB_VIP_ROOT UART_VIP_ROOT
+VIP_DUT ?= 0
+VIP_LOG ?= log/vip_$(VIP_DUT)
+VIP_WORK = $(VIP_LOG)/work
+VIP_DPI_GCC := $(shell command -v gcc 2>/dev/null)
+VIP_DPI_OPT := $(if $(VIP_DPI_GCC),-dpicpppath $(VIP_DPI_GCC))
+VIP_VSIM_ARGS ?=
+ifeq ($(VIP_DUT),1)
+VIP_RTL = +define+VIP_USE_DUT -f rtl.f
+endif
+
+.PHONY: vip-build vip-check
+vip-build:
+	mkdir -p $(VIP_LOG)
+	test -d $(VIP_WORK) || $(QUESTA_HOME)/linux_x86_64/vlib $(VIP_WORK)
+	$(QUESTA_HOME)/linux_x86_64/vlog -sv -timescale 1ns/1ps \
+	  -L $(QUESTA_HOME)/uvm-1.2 +incdir+$(VIP_UVM_HOME)/src \
+	  +define+UVM_OBJECT_MUST_HAVE_CONSTRUCTOR -work $(VIP_WORK) \
+	  $(VIP_RTL) -f vip.f -l $(VIP_LOG)/build.log
+
+vip-check: vip-build
+	$(QUESTA_HOME)/linux_x86_64/vsim $(VIP_VSIM_ARGS) $(VIP_DPI_OPT) -c -lib $(VIP_WORK) \
+	  -L $(QUESTA_HOME)/uvm-1.2 -sv_seed $(SEED) vip_smoke_tb -onfinish exit $(RUNARG) \
+	  -do 'run -all; quit -f -code 0' -l $(VIP_LOG)/run.log
+	grep -q 'VIP SMOKE PASSED' $(VIP_LOG)/run.log
+	! grep -Eq '(UVM_(ERROR|FATAL) .*\[|\*\* (Error|Fatal):)' $(VIP_LOG)/run.log
