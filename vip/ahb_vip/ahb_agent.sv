@@ -1,6 +1,7 @@
 class ahb_agent extends uvm_agent;
     `uvm_component_utils(ahb_agent)
 
+    virtual ahb_if vif;
     ahb_configuration cfg;
     ahb_monitor monitor;
     ahb_driver driver;
@@ -24,6 +25,7 @@ class ahb_agent extends uvm_agent;
 
         if (cfg.is_active == UVM_ACTIVE) begin
             uvm_config_db#(ahb_configuration)::set(this, "driver", "cfg", cfg);
+            uvm_config_db#(ahb_configuration)::set(this, "sequencer", "cfg", cfg);
             driver = ahb_driver::type_id::create("driver", this);
             sequencer = ahb_sequencer::type_id::create("sequencer", this);
         end
