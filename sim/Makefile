@@ -43,6 +43,24 @@ VSIM =  vsim \
 ##==============================================================
 
 all: build run
+
+# Independent RAL check. Keep its library separate from the existing DUT build.
+RAL_WORK ?= log/ral_self_check/work
+RAL_FILELIST ?= ral.f
+RAL_VSIM_ARGS ?=
+.PHONY: ral-build ral-check
+ral-build:
+	mkdir -p log/ral_self_check
+	test -d $(RAL_WORK) || vlib $(RAL_WORK)
+	$(filter-out +acc=rmb,$(VLOG)) -work $(RAL_WORK) -f $(RAL_FILELIST) \
+	  +define+UVM_OBJECT_MUST_HAVE_CONSTRUCTOR -l log/ral_self_check/build.log
+
+ral-check: ral-build
+	vsim $(RAL_VSIM_ARGS) -c -lib $(RAL_WORK) uart_ral_self_check -onfinish exit \
+	  -do "run -all; quit -f -code 0" \
+	  -l log/ral_self_check/run.log
+	grep -q 'RAL STRUCTURAL CHECK PASSED' log/ral_self_check/run.log
+
 build: 	vlib
 	$(VLOG)  -f compile.f \
   	+define+UVM_OBJECT_MUST_HAVE_CONSTRUCTOR 
@@ -87,6 +105,7 @@ help:
 	@echo "** make build: compile the design and testbench"
 	@echo "** make run  : run simulation"
 	@echo "** make all  : compile and run simulation"
+	@echo "** make ral-check: compile and run the standalone RAL structural check"
 	@echo "** make wave : open waveform"
 	@echo "** make clean: clean all compiled data"
 	@echo "****************************************"
