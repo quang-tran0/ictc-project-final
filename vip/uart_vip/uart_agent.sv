@@ -16,7 +16,7 @@ class uart_agent extends uvm_agent;
 
     function void build_phase(uvm_phase phase);
         super.build_phase(phase);
-        if (!uvm_config_db #(uart_configuration)::get(this, "", "cfg", cfg))
+        if (!uvm_config_db #(uart_configuration)::get(this, "", "cfg", cfg) || cfg == null)
             `uvm_fatal("UART_CFG", $sformatf("No configuration for %s", get_full_name()))
         if (!cfg.is_valid())
             `uvm_fatal("UART_CFG", $sformatf("Invalid UART configuration: %s", cfg.sprint()))

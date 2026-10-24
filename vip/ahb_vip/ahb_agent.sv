@@ -7,7 +7,7 @@ class ahb_agent extends uvm_agent;
     ahb_sequencer sequencer;
     uvm_analysis_port #(ahb_transaction) monitor_ap;
 
-    function new(string name="ahb_agent", uvm_component parent);
+    function new(string name = "ahb_agent", uvm_component parent);
         super.new(name, parent);
         monitor_ap = new("monitor_ap", this);
     endfunction
@@ -18,8 +18,10 @@ class ahb_agent extends uvm_agent;
         if (!uvm_config_db#(ahb_configuration)::get(this, "", "cfg", cfg))
             `uvm_fatal("AHB_AGENT", "Configuration not found in uvm_config_db")
 
-        if (cfg == null) `uvm_fatal("AHB_AGENT", "Configuration is null")
-        if (!cfg.is_valid()) `uvm_fatal("AHB_AGENT", "Invalid configuration/interface")
+        if (cfg == null)
+            `uvm_fatal("AHB_AGENT", "Configuration is null")
+        if (!cfg.is_valid())
+            `uvm_fatal("AHB_AGENT", "Invalid configuration/interface")
         is_active = cfg.is_active;
 
         uvm_config_db#(ahb_configuration)::set(this, "monitor", "cfg", cfg);
@@ -32,6 +34,7 @@ class ahb_agent extends uvm_agent;
             sequencer = ahb_sequencer::type_id::create("sequencer", this);
         end
     endfunction
+
     function void connect_phase(uvm_phase phase);
         super.connect_phase(phase);
         monitor.analysis_port.connect(monitor_ap);

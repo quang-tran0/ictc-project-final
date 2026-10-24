@@ -13,7 +13,8 @@ class ahb_driver extends uvm_driver #(ahb_transaction);
         super.build_phase(phase);
         if (!uvm_config_db #(ahb_configuration)::get(this, "", "cfg", cfg) || cfg == null)
             `uvm_fatal("AHB_CFG", "Driver configuration is missing/null")
-        if (!cfg.is_valid()) `uvm_fatal("AHB_CFG", "Invalid driver configuration/interface")
+        if (!cfg.is_valid())
+            `uvm_fatal("AHB_CFG", "Invalid driver configuration/interface")
         vif = cfg.vif;
     endfunction
 
@@ -51,6 +52,7 @@ class ahb_driver extends uvm_driver #(ahb_transaction);
     task run_bus();
         ahb_transaction address_item, data_item;
         bit address_valid = 0;
+        int unsigned stalled = 0;
         idle_address();
         vif.HWDATA <= 0;
         forever begin
@@ -67,6 +69,9 @@ class ahb_driver extends uvm_driver #(ahb_transaction);
                 continue;
             end
             if (vif.HREADYOUT !== 1'b1) begin
+                stalled++;
+                if (stalled > 2000)
+                    `uvm_fatal("AHB_TIMEOUT", "AHB transfer stalled for more than 2000 clocks")
                 // A two-cycle ERROR permits cancellation of the next address.
                 // Retain that request and re-present it after the ERROR completes.
                 if (vif.HRESP === 1'b1) begin
@@ -76,6 +81,7 @@ class ahb_driver extends uvm_driver #(ahb_transaction);
                 continue;
             end
 
+            stalled = 0;
             if (data_item != null) begin
                 data_item.completed = 1;
                 data_item.hresp = vif.HRESP;
@@ -98,8 +104,8 @@ class ahb_driver extends uvm_driver #(ahb_transaction);
                 vif.HWRITE <= address_item.xact_type;
                 vif.HSIZE <= address_item.xfer_size;
                 vif.HBURST <= address_item.burst_type;
-                vif.HSEL <= 1;
-                vif.HTRANS <= 2'b10;
+                vif.HSEL <= address_item.select;
+                vif.HTRANS <= address_item.transfer;
             end else idle_address();
         end
     endtask

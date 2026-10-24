@@ -1,6 +1,5 @@
 class uart_driver extends uvm_driver #(uart_transaction);
     `uvm_component_utils(uart_driver)
-
     uart_configuration cfg;
     virtual uart_if vif;
     uvm_analysis_port #(uart_transaction) request_ap;
@@ -12,68 +11,68 @@ class uart_driver extends uvm_driver #(uart_transaction);
 
     function void build_phase(uvm_phase phase);
         super.build_phase(phase);
-        if (!uvm_config_db #(uart_configuration)::get(this, "", "cfg", cfg))
-            `uvm_fatal("UART_CFG", $sformatf("No configuration for %s", get_full_name()))
+        if (!uvm_config_db#(uart_configuration)::get(this, "", "cfg", cfg) || cfg == null)
+            `uvm_fatal("UART_CFG", "Missing UART driver configuration")
+        if (!cfg.is_valid())
+            `uvm_fatal("UART_CFG", "Invalid UART configuration")
         vif = cfg.vif;
-        if (vif == null)
-            `uvm_fatal("UART_VIF", $sformatf("No virtual interface for %s", get_full_name()))
     endfunction
 
     task run_phase(uvm_phase phase);
-        vif.tx = 1'b1;
+        vif.tx = 1;
         forever begin
             seq_item_port.get_next_item(req);
-            if (req.direction == UART_TX) begin
-                publish_request(req);
+            wait (cfg.reset_n === 1'b1);
+            if (req.direction != UART_TX)
+                `uvm_fatal("UART_DIR", "Driver only drives DUT RX")
+            fork : active_frame
                 drive_frame(req);
-            end else begin
-                `uvm_warning("UART_DIR", "UART_RX items are captured automatically by the monitor")
-            end
+                begin
+                    @(negedge cfg.reset_n);
+                end
+            join_any
+            disable active_frame;
+            vif.tx = 1;
             seq_item_port.item_done();
         end
     endtask
 
-    function bit [7:0] data_mask();
-        return 8'hff >> (8 - cfg.data_width);
-    endfunction
-
-    function void publish_request(uart_transaction item);
-        uart_transaction normalized;
-        $cast(normalized, item.clone());
-        normalized.data &= data_mask();
-
-        if (cfg.parity_mode == UART_PARITY_NONE) normalized.inject_parity_error = 1'b0;
-        request_ap.write(normalized);
-    endfunction
-
     task drive_frame(uart_transaction item);
+        uart_transaction snapshot;
         bit parity_bit;
         realtime period;
-
+        int width, stops;
+        uart_parity_e parity;
+        width = cfg.data_width;
+        stops = cfg.num_of_stop_bit;
+        parity = cfg.parity_mode;
         period = cfg.bit_period();
-        parity_bit = ^(item.data & data_mask());
-
-        if (cfg.parity_mode == UART_PARITY_ODD) parity_bit = ~parity_bit;
-        if (item.inject_parity_error) parity_bit = ~parity_bit;
-
-        vif.tx = 1'b0;
+        $cast(snapshot, item.clone());
+        snapshot.data &= 8'hff >> (8 - width);
+        snapshot.inject_parity_error &= parity != UART_PARITY_NONE;
+        snapshot.data_width = width;
+        snapshot.stop_bits = stops;
+        snapshot.parity_mode = int'(parity);
+        snapshot.period = period;
+        snapshot.oversampling = cfg.oversampling;
+        request_ap.write(snapshot);
+        parity_bit = ^snapshot.data;
+        if (parity == UART_PARITY_ODD) parity_bit = ~parity_bit;
+        if (snapshot.inject_parity_error) parity_bit = ~parity_bit;
+        vif.tx = 0;
         #(period);
-
-        for (int unsigned bit_index = 0; bit_index < cfg.data_width; bit_index++) begin
-            vif.tx = item.data[bit_index];
+        for (int i = 0; i < width; i++) begin
+            vif.tx = snapshot.data[i];
             #(period);
         end
-
-        if (cfg.parity_mode != UART_PARITY_NONE) begin
+        if (parity != UART_PARITY_NONE) begin
             vif.tx = parity_bit;
             #(period);
         end
-
-        for (int unsigned stop_index = 0; stop_index < cfg.num_of_stop_bit; stop_index++) begin
-            vif.tx = item.inject_stop_error && (stop_index == item.stop_error_index) ? 1'b0 : 1'b1;
+        for (int i = 0; i < stops; i++) begin
+            vif.tx = (snapshot.inject_stop_error && i == snapshot.stop_error_index) ? 0 : 1;
             #(period);
         end
-
-        vif.tx = 1'b1;
+        vif.tx = 1;
     endtask
 endclass
